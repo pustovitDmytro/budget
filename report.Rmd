@@ -1,0 +1,125 @@
+---
+output:
+  beamer_presentation:
+    toc: true
+    slide_level: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+source("main.R", local = knitr::knit_global())
+```
+---
+title: "`r format(LAST_DATE, '%B %Y')`"
+---
+
+# Rates
+
+```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
+for(currency in c("USD", "EUR")){
+   cat("\n\n##", currency, "/ UAH Rate \n")
+   print(uahRatePlot(uah_rates, currency))
+}
+```
+
+# Flows
+
+```{r, echo=F}
+flowsTotalsPlot(uah_flw)
+```
+
+## Margin
+
+```{r, echo=F}
+marginDynamicsPlot(uah_flw)
+```
+
+## Flows Dynamics
+
+```{r, echo=F, warning=FALSE}
+flowsAbsPlot(uah_flw)
+```
+
+## Flows share
+
+```{r, echo=F}
+flowsTotalShares(shareDf)
+```
+
+## Expenses share
+
+```{r, echo=F}
+flowsTypeShare(shareDf, T)
+```
+
+## Income share
+
+```{r, echo=F}
+flowsTypeShare(shareDf)
+```
+
+```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
+for (column in FLOWS) {
+  cat("\n\n##", column, " dynamics \n")
+  print(flowAbsDynamicsPlot(flows_dat, column))
+  cat("\n\n##", column, " share\n")
+  print(flowRelDynamicsPlot(uah_flw, column))
+}
+```
+
+# Holdings
+
+## Dynamics by currency 
+```{r, echo=F, warning=FALSE}
+currencyDynamicsPlot(hold_total)
+```
+
+## Portfolio by currency 
+```{r, echo=F, warning=FALSE}
+currencyPortfolioPlot(hold_total)
+```
+
+```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
+for(currency in currencies){
+   cat("\n\n##", currency, " dynamics \n")
+   print(currencyHoldingsPlot(hold_total, currency, "currencyDynamics"))
+   cat("\n\n##", currency, " growth \n")
+   print(currencyHoldingsPlot(hold_total, currency, "currencyDiffAbs"))
+   cat("\n\n##", currency, " performance \n")
+   print(currencyHoldingsPlot(hold_total, currency, "currencyDiffRel"))
+}
+```
+
+## Dynamics by Holding Type 
+```{r, echo=F, warning=FALSE}
+holdingTypesDynamicsPlot(hold_total)
+```
+
+## Portfolio by Holding Type 
+```{r, echo=F, warning=FALSE}
+holdingTypesPortfolioPlot(hold_total)
+```
+
+```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
+for(holding in HOLDINGS){
+   cat("\n\n##", holding, " dynamics \n")
+   print(holdAbsDynamicsPlot(holdings,hold_meta,hold_uah, holding))
+}
+```
+
+# Errors
+
+## Profit calculations
+```{r, echo=F, warning=FALSE}
+profitsPlot(hold_total)
+```
+
+## Error absolute
+```{r, echo=F, warning=FALSE}
+profitErrorAbs(hold_total)
+```
+
+## Error relative
+```{r, echo=F, warning=FALSE}
+profitErrorRel(hold_total)
+```
