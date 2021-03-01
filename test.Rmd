@@ -1,0 +1,170 @@
+---
+title: "test"
+author: "Dmytro Pustovit"
+date: "2/14/2021"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(datasets)
+library(knitr)
+library(xtable)
+library(flexdashboard)
+```
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+This is regular text spanning the whole page. But here comes a two-column section.
+
+:::::: {.columns}
+::: {.column width="48%" data-latex="{0.48\textwidth}"}
+This text is in the left column.
+:::
+::: {.column width="4%" data-latex="{0.04\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+:::::: {.column width="48%" data-latex="{0.48\textwidth}"}
+This text is in the right column.
+:::
+::::::
+
+## Columns
+
+:::::: {.columns}
+::: {.column width="48%" data-latex="{0.48\textwidth}"}
+```{r, echo = FALSE, results = 'asis', message=F, warning=F}
+bold <- function(x) {paste('{\\textbf{',x,'}}', sep ='')}
+print(xtable(mtcars[1:20, c(1:5)]), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+```
+:::
+
+:::::: {.column width="48%" data-latex="{0.48\textwidth}"}
+```{r}
+plot(pressure)
+```
+:::
+::::::
+
+And back to a regular single-column environment.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+
+
+
+## This section will have three columns
+
+<div class = "row">
+<div class = "col-md-6">
+```{r cars1,  warning = FALSE, echo = FALSE}
+plot(pressure)
+```
+</div>
+<div class = "col-md-6">
+```{r pressure1, warning = FALSE, echo=FALSE}
+plot(pressure)
+```
+</div>
+</div>
+
+## This section will have two columns
+
+<div class="col2">
+```{r}
+head(mtcars)
+tail(mtcars)
+```
+</div>
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
+---
+Several packages support making beautiful tables with R, such as
+
+* [xtable](https://cran.r-project.org/web/packages/xtable/)
+* [stargazer](https://cran.r-project.org/web/packages/stargazer/)
+* [pander](http://rapporter.github.io/pander/)
+* [tables](https://cran.r-project.org/web/packages/tables/)
+* [ascii](http://eusebe.github.io/ascii/)
+* etc.
+
+It is also very easy to make tables with knitr's `kable` function:
+
+## kable
+```{r, echo = FALSE, results = 'asis'}
+kable(mtcars[1:5, ], caption = "A knitr kable.")
+```
+
+## Xtable
+```{r, echo = FALSE, results = 'asis', message=F, warning=F}
+bold <- function(x) {paste('{\\textbf{',x,'}}', sep ='')}
+print(xtable(mtcars[1:8, ]), scalebox='0.6', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+```
+
+## flextable
+```{r, echo = FALSE, results = 'asis', message=F, warning=F}
+library(flextable)
+f1<-flextable(mtcars[1:8, ])
+#autofit(f1)
+fit_to_width(autofit(f1), 4)
+```
+
+Two Column Layout 
+-------
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+This slide has two columns
+\end{column}
+\begin{column}{0.48\textwidth}
+If I put any code in here I get an error, see
+https://support.rstudio.com/hc/communities/public/questions/202717656-Can-we-have-columns-in-rmarkdown-beamer-presentations-
+\end{column}
+\end{columns}
+
+```{r, echo = FALSE, message=F, warning=F }
+jpeg('rplot.jpg')
+plot(pressure)
+dev.off()
+```
+
+
+latex with code
+-------
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+```{r, echo = FALSE, results = 'asis', message=F, warning=F}
+bold <- function(x) {paste('{\\textbf{',x,'}}', sep ='')}
+print(xtable(mtcars[1:20, c(1:5)]), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+```
+\end{column}
+\begin{column}{0.48\textwidth}
+\includegraphics[scale=.2]{rplot.jpg}
+\\
+```{r, echo = FALSE, results = 'asis', message=F, warning=F}
+summary(cars)
+```
+\end{column}
+\end{columns}

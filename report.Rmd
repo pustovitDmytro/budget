@@ -1,4 +1,5 @@
 ---
+geometry: "left=1cm,right=0.25cm,top=0cm,bottom=0cm"
 output:
   beamer_presentation:
     toc: true
@@ -8,6 +9,9 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 source("main.R", local = knitr::knit_global())
+library(knitr)
+library(xtable)
+bold <- function(x) {paste('{\\textbf{',x,'}}', sep ='')}
 ```
 ---
 title: "`r format(LAST_DATE, '%B %Y')`"
@@ -23,19 +27,16 @@ for(currency in c("USD", "EUR")){
 ```
 
 # Flows
-
 ```{r, echo=F}
 flowsTotalsPlot(uah_flw)
 ```
 
 ## Margin
-
 ```{r, echo=F}
 marginDynamicsPlot(uah_flw)
 ```
 
 ## Flows Dynamics
-
 ```{r, echo=F, warning=FALSE}
 flowsAbsPlot(uah_flw)
 ```
@@ -74,6 +75,23 @@ for (column in FLOWS) {
 currencyDynamicsPlot(hold_total)
 ```
 
+## Currency
+:::::: {.columns}
+::: {.column width="50%" data-latex="{0.5\textwidth}"}
+```{r, echo=FALSE, results='asis'}
+print(xtable(hold_total[, currencies]), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+```
+:::
+
+:::::: {.column width="50%" data-latex="{0.5\textwidth}"}
+```{r, echo=FALSE, results='asis'}
+xt <- xtable(hold_total[, paste0('uah_', currencies)])
+names(xt) <- currencies
+print(xt, scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+```
+:::
+::::::
+
 ## Portfolio by currency 
 ```{r, echo=F, warning=FALSE}
 currencyPortfolioPlot(hold_total)
@@ -93,6 +111,11 @@ for(currency in currencies){
 ## Dynamics by Holding Type 
 ```{r, echo=F, warning=FALSE}
 holdingTypesDynamicsPlot(hold_total)
+```
+
+## UAH Dynamics by Holding Type
+```{r, echo = FALSE, results = 'asis'}
+print(xtable(hold_total[, holdingTypes]), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
 ```
 
 ## Portfolio by Holding Type 

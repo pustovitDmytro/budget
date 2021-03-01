@@ -176,17 +176,17 @@ profitErrorRel<-function(hold_total){
   theme(axis.title = element_blank(), legend.position = "none") 
 }
 
-asPercentLabel <- function (value, flags="", dropZero=F){
+asPercentLabel <- function (value, flags="", dropZero=F, min=-Inf){
   ifelse(
-    is.na(value) | dropZero & value==0, 
+    is.na(value) | dropZero & value==0 | value<min, 
     "",
     paste0(formatC(value*100, digits = 1, format = "f", drop0trailing=T,flag=flags),'%')
   )
 }
 
-asKLabel <-function(value, flags="", dropZero=F){
+asKLabel <-function(value, flags="", dropZero=F, min=-Inf){
   ifelse(
-    is.na(value) | dropZero & value==0, 
+    is.na(value) | dropZero & value==0 | value<min, 
     NA, 
     ifelse(
       abs(value)>=1000,
@@ -328,7 +328,7 @@ holdingTypesDynamicsPlot<-function(hold_total){
     scale_fill_manual(values=holdScale) +
     scale_y_continuous(labels=asKLabel) +
     scale_x_continuous(breaks=1:nrow(hold_total), labels=hold_total$Names) +
-    geom_text_repel(aes(label=asKLabel(uah_value, dropZero=T), colour=factor(group, levels=holdingTypes)), position = "stack", vjust=1.5, hjust=-0.2, size=3) +
+    geom_text_repel(aes(label=asKLabel(uah_value, min=5000), colour=factor(group, levels=holdingTypes)), position = "stack", size=3) +
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(0,1),  legend.justification=c("left", "top"), legend.direction='horizontal', legend.background = element_rect(fill="transparent"), legend.title = element_blank())
 }
 
@@ -345,7 +345,7 @@ holdingTypesPortfolioPlot<-function(hold_total){
     scale_fill_manual(values=holdScale) +
     scale_x_continuous(breaks=1:nrow(hold_total), labels=hold_total$Names) +
     scale_y_continuous(labels=asPercentLabel) +
-    geom_text_repel(aes(label=asPercentLabel(uah_value, dropZero=T), colour=factor(group, levels=holdingTypes)), position = "stack", vjust=1.5, hjust=-0.1, size=2.5) +
+    geom_text_repel(aes(label=asPercentLabel(uah_value, min=0.02), colour=factor(group, levels=holdingTypes)), position = "stack", size=3) +
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(0,0),  legend.justification=c("left", "bottom"), legend.direction='vertical', legend.background = element_rect(fill="transparent"), legend.title = element_blank())
 }
 
