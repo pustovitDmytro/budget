@@ -7,17 +7,16 @@ library(ggrepel)
 Sys.setlocale("LC_TIME", "en_US.UTF-8")
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("lib.R")
+source("load_data.R")
 
 boolC <- c("TRUE"="#035e3c", "FALSE"="#a50000")
 boolScale <- scale_colour_manual(name="boolean", values=boolC)
-currColor <- c("UAH"="#695c3a", "USD"="#727a55", "EUR"="#73a9bf")
-currSecColor <- c("UAH"="#a64f48", "USD"="#ddd9b4", "EUR"="#d1dccf")
+currencies<-raw_types$Currencies[!is.na(raw_types$Currencies)]
+currColor <- setNames(raw_types$`Currencies Colors`, currencies)
+currSecColor <- setNames(raw_types$`Currencies Second Colors`, currencies)
 currScale <- scale_colour_manual(name="currency", values=currColor)
-currencies<-c("UAH", "USD", "EUR")
-holdingTypes<-c("Cash", "Current Account", "Savings Account", "Domestic Bonds", "Short Deposit", "Long Deposit", "Shares", "Bank Metals")
-holdScale<- c("Cash"="#ff6500", "Current Account"="#db3a34", "Savings Account"="#084c61", "Domestic Bonds"="#177e89", "Short Deposit"="#C26DBC", "Long Deposit"="#708b75", "Shares"="#4c956c", "Bank Metals"="#bc4749")
-
-source("load_data.R") # load raw_flows, raw_holdings, uah_rates
+holdingTypes<-raw_types$`Holdings Types`
+holdScale<- setNames(raw_types$`Holdings Types Colors`, raw_types$`Holdings Types`)
 
 LAST_DATE<-last(uah_rates$time)
 HOLDINGS<-colnames(raw_holdings)[-1]
@@ -53,8 +52,8 @@ shareDf$incType<-ifelse(shareDf$incRate>0.05, shareDf$name, "other")
 
 #HOLDINGS
 
-hold_uah<-extract_uah(raw_holdings,uah_rates,1, c(1,2))
-holdings<-extract_native(raw_holdings, c(1,2))
+hold_uah<-extract_uah(raw_holdings,uah_rates,1, c(1,2,3))
+holdings<-extract_native(raw_holdings, c(1,2,3))
 hold_meta<-as.data.frame(raw_holdings[c(1,2),-c(1)])
 hold_total<-as.data.frame(matrix(nrow = nrow(hold_uah), ncol = 0))
 

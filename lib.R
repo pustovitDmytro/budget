@@ -44,7 +44,10 @@ flowsTypeShare<-function(dat, expenses=F){
   color = ifelse(expenses, boolC["FALSE"], boolC["TRUE"])
   df$rate<-if(expenses) df$expRate else  df$incRate
   df$type<-if(expenses) df$expType else df$incType
-  main<-ggplot() + geom_bar(data=df %>% filter(rate>0), aes(x=reorder(gsub(" ", "\n",name),rate), y=rate), stat = "identity", colour = color, fill=alpha(color, 0.5), width=0.5) +
+  
+  main<-ggplot(data=df %>% filter(rate>0), aes(x=reorder(gsub(" ", "\n",name), rate), y=rate)) + geom_bar( stat = "identity", colour = color, fill=alpha(color, 0.5), width=0.5) +
+    geom_text(aes(label=asPercentLabel(rate), hjust=ifelse(rate>0.5, 1.2, -0.5)), vjust=-0.75, size=2.75, colour = color)+
+    geom_text(aes(label=asKLabel(value), hjust=ifelse(rate>0.5, 1.2, -0.5)), vjust=1.5, size=2.75, colour = color)+
     coord_flip() + theme(axis.title.x = element_blank(), axis.title.y = element_blank()) + 
     scale_y_continuous(labels=function(x) paste0(x*100,'%'))
 

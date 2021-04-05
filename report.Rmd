@@ -85,8 +85,8 @@ print(xtable(hold_total[, currencies]), scalebox='0.5', comment=FALSE, sanitize.
 
 :::::: {.column width="50%" data-latex="{0.5\textwidth}"}
 ```{r, echo=FALSE, results='asis'}
-xt <- xtable(hold_total[, paste0('uah_', currencies)])
-names(xt) <- currencies
+xt <- xtable(hold_total[, c('abs', paste0('uah_', currencies))])
+names(xt) <- c("Total", currencies)
 print(xt, scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
 ```
 :::
@@ -115,7 +115,7 @@ holdingTypesDynamicsPlot(hold_total)
 
 ## UAH Dynamics by Holding Type
 ```{r, echo = FALSE, results = 'asis'}
-print(xtable(hold_total[, holdingTypes]), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+print(xtable(hold_total[, holdingTypes] %>% select_if(function(col) !!(sum(tail(col, n=6))) )), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
 ```
 
 ## Portfolio by Holding Type 
