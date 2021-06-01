@@ -1,5 +1,4 @@
 ---
-geometry: "left=1cm,right=0.25cm,top=0cm,bottom=0cm"
 output:
   beamer_presentation:
     toc: true

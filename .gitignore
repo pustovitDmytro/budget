@@ -1,5 +1,6 @@
-load_data.R
 *.pdf
 report_cache/
 .Rhistory
 .RData
+.Rproj.user
+.Renviron

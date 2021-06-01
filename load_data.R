@@ -1,0 +1,7 @@
+library(googlesheets4)
+spreadsheet <- Sys.getenv("SPREADSHEET_URL")
+raw_flows<-read_sheet(spreadsheet, "Flows")
+uah_rates<-read_sheet(spreadsheet, "Rates")
+raw_holdings<-read_sheet(spreadsheet, "Holdings")
+raw_types<-read_sheet(spreadsheet, "Types")
+sprintf("data loaded from %s", spreadsheet)

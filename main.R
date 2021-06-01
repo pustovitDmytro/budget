@@ -5,7 +5,7 @@ library(ggplot2)
 library(cowplot)
 library(ggrepel)
 Sys.setlocale("LC_TIME", "en_US.UTF-8")
-setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+#setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("lib.R")
 source("load_data.R")
 
