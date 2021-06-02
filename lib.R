@@ -266,11 +266,11 @@ currencyDynamicsPlot<-function(hold_total){
   
   ggplot(dd, aes(x=x, y=uah_value, fill=group, colour=group)) + 
     geom_area(alpha=0.6 , size=0.5) + 
-    scale_fill_manual(name="currency", values=currSecColor) +
-    scale_color_manual(name="currency", values=currColor) +
+    scale_fill_manual("currency", values=currSecColor) +
+    scale_color_manual("currency", values=currColor) +
     scale_y_continuous(labels=asKLabel) +
     scale_x_continuous(breaks=1:nrow(hold_total), labels=hold_total$Names) +
-    geom_text(aes(label=asKLabel(uah_value), colour=group), position = "stack", vjust=1.5, hjust=-0.1, size=2.5) +
+    geom_text(aes(label=asKLabel(uah_value, dropZero = T), colour=group), position = "stack", vjust=1.5, hjust=-0.1, size=2.5) +
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(0,1),  legend.justification=c("left", "top"), legend.direction='horizontal', legend.background = element_rect(fill="transparent"), legend.title = element_blank())
 }
 
@@ -287,7 +287,7 @@ currencyPortfolioPlot<-function(hold_total){
     scale_color_manual(values=currColor) +
     scale_y_continuous(labels=asPercentLabel) +
     scale_x_continuous(breaks=1:nrow(hold_total), labels=hold_total$Names) +
-    geom_text(aes(label=asPercentLabel(uah_rate), colour=group), position = "stack", vjust=1.5, hjust=-0.1, size=2.5) +
+    geom_text(aes(label=asPercentLabel(uah_rate, dropZero = T), colour=group), position = "stack", vjust=1.5, hjust=-0.1, size=2.5) +
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(0,0),  legend.justification=c("left", "bottom"), legend.direction='vertical', legend.background = element_rect(fill="transparent"), legend.title = element_blank())
 }
 
