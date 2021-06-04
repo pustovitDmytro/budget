@@ -1,17 +1,19 @@
 ---
 output:
   beamer_presentation:
+    fig_crop: FALSE
     toc: true
     slide_level: 2
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
 source("main.R", local = knitr::knit_global())
 library(knitr)
+opts_chunk$set(echo = FALSE, fig.width = 15, fig.height = 12)
 library(xtable)
 bold <- function(x) {paste('{\\textbf{',x,'}}', sep ='')}
 ```
+
 ---
 title: "`r format(LAST_DATE, '%B %Y')`"
 ---
@@ -19,7 +21,7 @@ title: "`r format(LAST_DATE, '%B %Y')`"
 # Rates
 
 ```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
-for(currency in c("USD", "EUR")){
+for(currency in currencies[currencies!='UAH']){
    cat("\n\n##", currency, "/ UAH Rate \n")
    print(uahRatePlot(uah_rates, currency))
 }
