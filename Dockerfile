@@ -1,9 +1,8 @@
-FROM rocker/r-ver:3.6.3
+FROM pustic/budget-base:1
 
-RUN mkdir /app 
+RUN mkdir /app1 
 
-WORKDIR /app
+WORKDIR /app1
 
-COPY . /app
+COPY . /app1
 
-RUN R -e "source('/app/install.R')"
