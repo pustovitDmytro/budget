@@ -5,3 +5,4 @@ report_cache/
 .RData
 .Rproj.user
 .Renviron
+*.secrets/*

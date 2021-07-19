@@ -1,8 +1,6 @@
-FROM pustic/budget-base:1
+FROM pustovitdmytro/budget-base:1.0.1
 
-RUN mkdir /app1 
+WORKDIR /app
 
-WORKDIR /app1
-
-COPY . /app1
-
+COPY src /app
+COPY budget.Rproj /app/budget.Rproj
