@@ -6,3 +6,4 @@ report_cache/
 .Rproj.user
 .Renviron
 *.secrets/*
+node_modules/*
