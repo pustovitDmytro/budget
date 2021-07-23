@@ -42,3 +42,10 @@ docker run -it \
 ```
 
 check `~/budget/files/report.pdf`
+
+
+# Examples
+See spreadsheet sample:
+https://docs.google.com/spreadsheets/d/16TUXk_thxH8JkbdlAdFe9q8s3f6PDZiq1zXvecUp-eM/edit?usp=sharing
+
+Sample spreadsheet will result in next [report](./tests/example.pdf)

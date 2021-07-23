@@ -7,3 +7,6 @@ report_cache/
 .Renviron
 *.secrets/*
 node_modules/*
+.secrets
+files/*
+!tests/example.pdf
