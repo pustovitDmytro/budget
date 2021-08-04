@@ -251,10 +251,22 @@ addCompareLine <-function(plot, original, compare, color=alpha(currSecColor["UAH
 
 uahRatePlot <- function (uah_rates, currency){
   col=currColor[currency]
+  holdCol=alpha(currSecColor[currency], 0.5)
   line<-unlist(uah_rates[-c(1), currency])
-  ggplot()+
-    geom_line(aes(x=flw_x_ace, y=line), group=1, colour=col)+
-    theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
+  hold<-hold_total[-c(1), currency]
+  
+  ylim.prim <- c(first(na.omit(line)), last(na.omit(line)))
+  ylim.sec <- c(first(na.omit(hold)), last(na.omit(hold)))
+  
+  b <- diff(ylim.prim)/diff(ylim.sec)
+  a <- ylim.prim[1] - b*ylim.sec[1]
+  
+  ggplot(NULL, aes(x=flw_x_ace))+
+    geom_segment(aes(y=min(line), yend = a + hold*b, x=flw_x_ace, xend=flw_x_ace), size=10, color = holdCol) +
+    geom_line(aes(y=line), group=1, colour=col)+
+    geom_text(aes(y=line, label=asKLabel(line)),colour=col, vjust=-0.5, hjust=-0.15, size=2.5) +
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank()) +
+    scale_y_continuous(labels=asKLabel, sec.axis = sec_axis(~ (. - a)/b, labels=asKLabel))
 }
 
 currencyDynamicsPlot<-function(hold_total){
