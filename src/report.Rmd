@@ -138,6 +138,11 @@ for(holding in HOLDINGS){
 profitsPlot(hold_total)
 ```
 
+## Profit by currency
+```{r, echo=F, warning=FALSE}
+currencyErrors()
+```
+
 ## Error absolute
 ```{r, echo=F, warning=FALSE}
 profitErrorAbs(hold_total)

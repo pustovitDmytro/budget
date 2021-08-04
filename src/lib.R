@@ -150,6 +150,8 @@ flowsAbsPlot <- function(uah){
     theme(axis.title.x = element_blank(), axis.title.y = element_blank()) 
 }
 
+errorSourceColors<-c('Holdings' = alpha("#808000", 0.85),'Flows' = alpha("#000080", 0.85))
+
 profitsPlot<-function(hold_total){
   ggplot(hold_total, aes(x=Names))+
   geom_line(aes(y=abs_diff, colour='Holdings'), size=.5, group = 1)+
@@ -157,7 +159,7 @@ profitsPlot<-function(hold_total){
   geom_line(aes(x=hold_total$Names, y=hold_total$flows_profit, colour='Flows'), size=.5, group = 1) +
   geom_text(aes(label=ifelse(abs_error>2000, asKLabel(flows_profit), NA), y=flows_profit, colour='Flows'),hjust=-.2, vjust=1.2, size=3, check_overlap = T) +
   scale_y_continuous(labels=asKLabel) +
-  scale_colour_manual(name = '', guide = 'legend',values = c('Holdings' = alpha("#808000", 0.5),'Flows' = alpha("#000080", 0.5)), labels = c('Holdings','Flows'))+
+  scale_colour_manual(name = '', guide = 'legend',values = errorSourceColors)+
   theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(1,1),  legend.justification=c(1,1), legend.direction='horizontal', legend.background = element_rect(fill="transparent")) 
 }
 
@@ -167,6 +169,17 @@ profitErrorAbs<-function(hold_total){
   geom_text(aes(label=asKLabel(abs_error), vjust=-1), colour=boolC["FALSE"], size=3) +
   scale_y_continuous(labels=asKLabel) +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank())
+}
+
+currencyErrors<-function(){
+  ggplot(currency_summary, aes(x=rownames(currency_summary)))+
+    geom_bar(aes(y=hold_diff*rate), stat = "identity", colour=alpha(errorSourceColors["Holdings"],0.8), fill=alpha(errorSourceColors["Holdings"], 0.3))+
+    geom_text(aes(y=hold_diff*rate, label=asKLabel(hold_diff), colour='Holdings'), vjust=1.5, hjust=-0.2, size=3) +
+    geom_bar(aes(y=sum*rate), stat = "identity", colour=alpha(errorSourceColors["Flows"],0.8), fill=alpha(errorSourceColors["Flows"], 0.3))+
+    geom_text(aes(y=sum*rate, label=asKLabel(sum), colour='Flows'), vjust=-0.5, hjust=-0.2, size=3) +
+    scale_y_continuous(labels=asKLabel) +
+      scale_colour_manual(name = '', guide = 'legend',values = errorSourceColors)+
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank())
 }
 
 profitErrorRel<-function(hold_total){
@@ -328,6 +341,22 @@ extract_native<-function(raw, categoryRows=c(1)){
     data[,column]<-as.numeric(as.character((data[, column])))
   }
   data
+}
+
+currencySummarize<-function(raw, currencyRow, categoryRows){
+  data<-as.data.frame(currencies)
+  rownames(data)<-data$currencies
+  data$sum<-0
+  data$rate=as.numeric(tail(uah_rates[-c(1)], n=1))
+
+  for (column in colnames(raw)) {
+    currency<-as.character(unlist(raw[currencyRow, column]))
+    amount<-unlist((raw[c(nrow(raw)), column]))
+    if(length(amount)> 0) {
+      data[currency, 'sum'] <- data[currency, 'sum'] + as.numeric(amount)
+    }
+  }
+  head(data[-c(1)], -1)
 }
 
 holdingTypesDynamicsPlot<-function(hold_total){

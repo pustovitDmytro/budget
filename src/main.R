@@ -28,6 +28,8 @@ FLOWS<-colnames(raw_flows)[-1]
 #FLOWS
 uah_flw<-extract_uah(raw_flows,uah_rates,1, c(1,2))
 flows_dat<-extract_native(raw_flows, c(1,2))
+currency_summary<-currencySummarize(raw_flows, 1, c(1,2))
+currency_summary$hold_diff<-0
 uah_flows<-uah_flw
 flw_x_ace<-factor(row.names(uah_flw), levels = row.names(uah_flw))
 
@@ -70,6 +72,7 @@ for(currency in currencies){
   cols<-as.vector(which(apply(hold_meta, 2, function(x) as.character(x[1])==currency)))
   hold_total[, currency]<-apply(as.data.frame(holdings[,cols]), 1, function(x){sum(unlist(x), na.rm = T)})
   hold_total[, abs_colname]<-c(NA, diff(hold_total[, currency],1))
+  currency_summary[currency, 'hold_diff'] = as.numeric(tail(hold_total[abs_colname], n=1))
   hold_total[, rel_colname]<-c(NA, hold_total[-c(1), abs_colname]/hold_total[-1,currency])
   rates<-uah_rates[, currency]
   hold_total[, uah_colname]<-hold_total[, currency]*rates
