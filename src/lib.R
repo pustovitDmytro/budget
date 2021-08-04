@@ -39,6 +39,15 @@ flowsTotalShares <- function (df){
     theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.position=c(0.5,0.1), legend.direction='horizontal', legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
 }
 
+currencySharePlot<-function(){
+    ggplot(currency_summary) + 
+    geom_bar(aes(x=1, y=hold_abs_uah, fill=rownames(currency_summary), colour=rownames(currency_summary)), position="fill", stat = "identity")+
+    coord_polar(theta="y") + labs(fill=NULL) +
+    scale_fill_manual("currency", values=currSecColor) +
+    scale_color_manual("currency", values=currColor) +
+    theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.text=element_text(size=15), legend.position=c(1,0.5), legend.direction='vertical', legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
+}
+
 flowsTypeShare<-function(dat, expenses=F){
   df<-dat
   color = ifelse(expenses, boolC["FALSE"], boolC["TRUE"])

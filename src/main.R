@@ -72,14 +72,17 @@ for(currency in currencies){
   cols<-as.vector(which(apply(hold_meta, 2, function(x) as.character(x[1])==currency)))
   hold_total[, currency]<-apply(as.data.frame(holdings[,cols]), 1, function(x){sum(unlist(x), na.rm = T)})
   hold_total[, abs_colname]<-c(NA, diff(hold_total[, currency],1))
+  
   currency_summary[currency, 'hold_diff'] = as.numeric(tail(hold_total[abs_colname], n=1))
+  currency_summary[currency, 'hold_abs'] = as.numeric(tail(hold_total[currency], n=1))
+  
   hold_total[, rel_colname]<-c(NA, hold_total[-c(1), abs_colname]/hold_total[-1,currency])
   rates<-uah_rates[, currency]
   hold_total[, uah_colname]<-hold_total[, currency]*rates
+  currency_summary[currency, 'hold_abs_uah'] = as.numeric(tail(hold_total[uah_colname], n=1))
   
   hold_total[, "abs"]<-hold_total[, "abs"]+hold_total[, currency]*rates
   hold_total[, "abs_diff"]<-hold_total[, "abs_diff"]+hold_total[, abs_colname]*rates
-  
 }
 
 hold_total$flows_profit<-c(NA,uah_flw$Profit)

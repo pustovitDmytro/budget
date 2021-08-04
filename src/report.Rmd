@@ -85,13 +85,19 @@ print(xtable(hold_total[, currencies]), scalebox='0.5', comment=FALSE, sanitize.
 :::
 
 :::::: {.column width="50%" data-latex="{0.5\textwidth}"}
+```{r, echo=F, warning=FALSE}
+currencySharePlot()
+```
+:::
+::::::
+
+## Currency consolidation
+
 ```{r, echo=FALSE, results='asis'}
 xt <- xtable(hold_total[, c('abs', paste0('uah_', currencies))])
 names(xt) <- c("Total", currencies)
 print(xt, scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
 ```
-:::
-::::::
 
 ## Portfolio by currency 
 ```{r, echo=F, warning=FALSE}
