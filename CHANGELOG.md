@@ -1,3 +1,14 @@
+# [1.1.0](https://github.com/pustovitDmytro/budget/compare/v1.0.0...v1.1.0) (2021-08-04)
+
+
+### Chore
+
+* adds example ([45212cc](https://github.com/pustovitDmytro/budget/commit/45212cc4e56f4599e73c0adf7abc33b12ef46021))
+
+### New
+
+* adds holdings accum to rates plots ([147071b](https://github.com/pustovitDmytro/budget/commit/147071b05b563da8b9f96626aff33c11d510a669))
+
 # 1.0.0 (2021-07-20)
 
 
