@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/pustovitDmytro/budget/compare/v1.1.0...v1.2.0) (2021-08-04)
+
+
+### New
+
+* currency share plot for currency tables ([c2767ee](https://github.com/pustovitDmytro/budget/commit/c2767eeca9500ad9fbdddcb45dedb139c85fac0d))
+* Profit by currency errors plot ([4443cb2](https://github.com/pustovitDmytro/budget/commit/4443cb275f9ec3acb566a30e9c038a25e3f3e304))
+
 # [1.1.0](https://github.com/pustovitDmytro/budget/compare/v1.0.0...v1.1.0) (2021-08-04)
 
 
