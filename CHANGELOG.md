@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/pustovitDmytro/budget/compare/v1.3.0...v1.3.1) (2021-09-02)
+
+
+### Fix
+
+* fixes scale at currencySharePlot ([4ac630f](https://github.com/pustovitDmytro/budget/commit/4ac630f6bd24bfae53de697434a47a00d24d8918))
+
 # [1.3.0](https://github.com/pustovitDmytro/budget/compare/v1.2.0...v1.3.0) (2021-09-02)
 
 
