@@ -20,6 +20,10 @@ holdingTypes<-raw_types$`Holdings Types`
 holdingTypes<-holdingTypes[!is.na(holdingTypes)]
 holdScale<- setNames(raw_types$`Holdings Types Colors`, raw_types$`Holdings Types`)
 holdScale<-holdScale[!is.na(holdScale)]
+Places<-raw_types$Places
+Places<-Places[!is.na(Places)]
+placesScale<- setNames(raw_types$`Places Colors`, raw_types$Places)
+placesScale<-placesScale[!is.na(placesScale)]
 
 LAST_DATE<-last(uah_rates$time)
 HOLDINGS<-colnames(raw_holdings)[-1]
@@ -59,7 +63,7 @@ shareDf$incType<-ifelse(shareDf$incRate>0.05, shareDf$name, "other")
 
 hold_uah<-extract_uah(raw_holdings,uah_rates,1, c(1,2,3))
 holdings<-extract_native(raw_holdings, c(1,2,3))
-hold_meta<-as.data.frame(raw_holdings[c(1,2),-c(1)])
+hold_meta<-as.data.frame(raw_holdings[c(1,2,3),-c(1)])
 hold_total<-as.data.frame(matrix(nrow = nrow(hold_uah), ncol = 0))
 
 hold_total[, "abs"]<-0
@@ -76,13 +80,23 @@ for(currency in currencies){
   currency_summary[currency, 'hold_diff'] = as.numeric(tail(hold_total[abs_colname], n=1))
   currency_summary[currency, 'hold_abs'] = as.numeric(tail(hold_total[currency], n=1))
   
-  hold_total[, rel_colname]<-c(NA, hold_total[-c(1), abs_colname]/hold_total[-1,currency])
+  hold_total[, rel_colname]<-c(NA, ifelse(hold_total[-1,currency]==0, 0, hold_total[-c(1), abs_colname]/hold_total[-1,currency]))
   rates<-uah_rates[, currency]
   hold_total[, uah_colname]<-hold_total[, currency]*rates
   currency_summary[currency, 'hold_abs_uah'] = as.numeric(tail(hold_total[uah_colname], n=1))
   
   hold_total[, "abs"]<-hold_total[, "abs"]+hold_total[, currency]*rates
   hold_total[, "abs_diff"]<-hold_total[, "abs_diff"]+hold_total[, abs_colname]*rates
+  
+  for(place in Places){
+    cols<-as.vector(which(apply(hold_meta, 2, function(x) as.character(x[3])==place && as.character(x[1])==currency)))
+    if(length(cols)!=0){
+      currency_colname=paste0(place,'_',currency)
+      currency_abs_diff_colname=paste0(currency_colname,'_abs_diff')
+      hold_total[, currency_colname]<-apply(as.data.frame(holdings[,cols]), 1, function(x){sum(unlist(x), na.rm = T)})
+      hold_total[, currency_abs_diff_colname]<-c(NA, diff(hold_total[, currency_colname],1))
+    }
+  }
 }
 
 hold_total$flows_profit<-c(NA,uah_flw$Profit)

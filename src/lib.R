@@ -188,7 +188,31 @@ currencyErrors<-function(){
     geom_text(aes(y=sum*rate, label=asKLabel(sum), colour='Flows'), vjust=-0.5, hjust=-0.2, size=3) +
     scale_y_continuous(labels=asKLabel) +
       scale_colour_manual(name = '', guide = 'legend',values = errorSourceColors)+
-    theme(axis.title.x = element_blank(), axis.title.y = element_blank())
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(1,1),  legend.justification=c(1,1), legend.direction='horizontal', legend.background = element_rect(fill="transparent"))
+}
+
+getPlaceStatsTable<-function(currency){
+  table = data.frame()
+  for(place in Places){
+    isMatch = sum(hold_total[(nrow(hold_total)-2):nrow(hold_total),paste0(place,'_',currency)], na.rm=T)>0
+    if(isMatch){
+      table[place,c("total", 'abs_diff')]<-c(hold_total[nrow(hold_total),c(paste0(place,'_',currency), paste0(place,'_',currency,'_abs_diff'))])
+    }
+  }
+  table$Names<-rownames(table)
+  table
+}
+
+placeChangePlot<-function(currency){
+  table <- getPlaceStatsTable(currency)
+  
+  ggplot(table, aes(x=rownames(table)))+
+    geom_bar(aes(y=abs_diff, colour=Names, fill=Names), stat = "identity")+
+    geom_text(aes(y=abs_diff, label=asKLabel(abs_diff), colour=Names), vjust=1.5, hjust=-0.2, size=3) +
+    scale_y_continuous(labels=asKLabel) +
+    scale_fill_manual(name = '',  values=alpha(placesScale, 0.4)) +
+    scale_color_manual(name = '',  values=placesScale) +
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(1,1),  legend.justification=c(1,1), legend.direction='horizontal', legend.background=element_rect(fill="transparent"))
 }
 
 profitErrorRel<-function(hold_total){

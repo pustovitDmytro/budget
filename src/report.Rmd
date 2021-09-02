@@ -106,12 +106,16 @@ currencyPortfolioPlot(hold_total)
 
 ```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
 for(currency in currencies){
+   if(sum(tail(hold_total[,currency], n=3))>0){
    cat("\n\n##", currency, " dynamics \n")
    print(currencyHoldingsPlot(hold_total, currency, "currencyDynamics"))
    cat("\n\n##", currency, " growth \n")
    print(currencyHoldingsPlot(hold_total, currency, "currencyDiffAbs"))
    cat("\n\n##", currency, " performance \n")
    print(currencyHoldingsPlot(hold_total, currency, "currencyDiffRel"))
+   cat("\n\n##", currency, " by place share \n")
+   print(placeChangePlot(currency))
+   }
 }
 ```
 
