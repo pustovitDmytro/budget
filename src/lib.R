@@ -45,7 +45,7 @@ currencySharePlot<-function(){
     coord_polar(theta="y") + labs(fill=NULL) +
     scale_fill_manual("currency", values=currSecColor) +
     scale_color_manual("currency", values=currColor) +
-    theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.text=element_text(size=15), legend.position=c(1,0.5), legend.direction='vertical', legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
+    theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.text=element_text(size=30), legend.position=c(1,0.5), legend.direction='vertical', legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
 }
 
 flowsTypeShare<-function(dat, expenses=F){
