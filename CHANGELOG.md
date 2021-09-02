@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/pustovitDmytro/budget/compare/v1.2.0...v1.3.0) (2021-09-02)
+
+
+### New
+
+* adds placeChangePlot for currency ([d2454e1](https://github.com/pustovitDmytro/budget/commit/d2454e13c75d482f84cbe06abec8f582a4467639))
+
 # [1.2.0](https://github.com/pustovitDmytro/budget/compare/v1.1.0...v1.2.0) (2021-08-04)
 
 
