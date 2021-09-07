@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/pustovitDmytro/budget/compare/v1.3.1...v1.4.0) (2021-09-07)
+
+
+### New
+
+* adds place diversification analysis ([bf2bb10](https://github.com/pustovitDmytro/budget/commit/bf2bb10b620ba3c29d3d6e45835acc0e02f463b5))
+
 ## [1.3.1](https://github.com/pustovitDmytro/budget/compare/v1.3.0...v1.3.1) (2021-09-02)
 
 
