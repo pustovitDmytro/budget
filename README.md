@@ -4,7 +4,7 @@
 Run without R studio:
 
 ```bash
-Rscript -e "rmarkdown::render('report.Rmd',params=list(args = myarg))"
+Rscript -e "rmarkdown::render('src/report.Rmd',params=list(args = myarg))"
 ```
 
 ## Environment

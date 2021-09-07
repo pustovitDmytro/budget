@@ -1,0 +1,1542 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[ignorenonframetext,]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+\centering
+\begin{beamercolorbox}[sep=16pt,center]{part title}
+  \usebeamerfont{part title}\insertpart\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+\centering
+\begin{beamercolorbox}[sep=12pt,center]{part title}
+  \usebeamerfont{section title}\insertsection\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+\centering
+\begin{beamercolorbox}[sep=8pt,center]{part title}
+  \usebeamerfont{subsection title}\insertsubsection\par
+\end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={January 2021},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\newif\ifbibliography
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{January 2021}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents[hideallsubsections]
+\end{frame}
+\hypertarget{rates}{%
+\section{Rates}\label{rates}}
+
+\begin{frame}{USD / UAH Rate}
+\protect\hypertarget{usd-uah-rate}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-1-1.pdf}
+
+\end{frame}
+
+\begin{frame}{EUR / UAH Rate}
+\protect\hypertarget{eur-uah-rate}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-1-2.pdf}
+
+\end{frame}
+
+\begin{frame}{CHF / UAH Rate}
+\protect\hypertarget{chf-uah-rate}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-1-3.pdf}
+
+\end{frame}
+
+\begin{frame}{GLD / UAH Rate}
+\protect\hypertarget{gld-uah-rate}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-1-4.pdf}
+
+\end{frame}
+
+\begin{frame}{BTC / UAH Rate}
+\protect\hypertarget{btc-uah-rate}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-1-5.pdf}
+
+\end{frame}
+
+\hypertarget{flows}{%
+\section{Flows}\label{flows}}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-2-1.pdf}
+
+\begin{frame}{Margin}
+\protect\hypertarget{margin}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-3-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Flows Dynamics}
+\protect\hypertarget{flows-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-4-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Flows share}
+\protect\hypertarget{flows-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-5-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Expenses share}
+\protect\hypertarget{expenses-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-6-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Income share}
+\protect\hypertarget{income-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-7-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Eat dynamics}
+\protect\hypertarget{eat-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Eat share}
+\protect\hypertarget{eat-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-2.pdf}
+
+\end{frame}
+
+\begin{frame}{Public transport dynamics}
+\protect\hypertarget{public-transport-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-3.pdf}
+
+\end{frame}
+
+\begin{frame}{Public transport share}
+\protect\hypertarget{public-transport-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-4.pdf}
+
+\end{frame}
+
+\begin{frame}{Entertain dynamics}
+\protect\hypertarget{entertain-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-5.pdf}
+
+\end{frame}
+
+\begin{frame}{Entertain share}
+\protect\hypertarget{entertain-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-6.pdf}
+
+\end{frame}
+
+\begin{frame}{health dynamics}
+\protect\hypertarget{health-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-7.pdf}
+
+\end{frame}
+
+\begin{frame}{health share}
+\protect\hypertarget{health-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-8.pdf}
+
+\end{frame}
+
+\begin{frame}{tech dynamics}
+\protect\hypertarget{tech-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-9.pdf}
+
+\end{frame}
+
+\begin{frame}{tech share}
+\protect\hypertarget{tech-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-10.pdf}
+
+\end{frame}
+
+\begin{frame}{stuff dynamics}
+\protect\hypertarget{stuff-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-11.pdf}
+
+\end{frame}
+
+\begin{frame}{stuff share}
+\protect\hypertarget{stuff-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-12.pdf}
+
+\end{frame}
+
+\begin{frame}{charity dynamics}
+\protect\hypertarget{charity-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-13.pdf}
+
+\end{frame}
+
+\begin{frame}{charity share}
+\protect\hypertarget{charity-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-14.pdf}
+
+\end{frame}
+
+\begin{frame}{rent dynamics}
+\protect\hypertarget{rent-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-15.pdf}
+
+\end{frame}
+
+\begin{frame}{rent share}
+\protect\hypertarget{rent-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-16.pdf}
+
+\end{frame}
+
+\begin{frame}{Salary dynamics}
+\protect\hypertarget{salary-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-17.pdf}
+
+\end{frame}
+
+\begin{frame}{Salary share}
+\protect\hypertarget{salary-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-18.pdf}
+
+\end{frame}
+
+\begin{frame}{Gifts dynamics}
+\protect\hypertarget{gifts-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-19.pdf}
+
+\end{frame}
+
+\begin{frame}{Gifts share}
+\protect\hypertarget{gifts-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-20.pdf}
+
+\end{frame}
+
+\begin{frame}{FreeFina DomeBond Uah dynamics}
+\protect\hypertarget{freefina-domebond-uah-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-21.pdf}
+
+\end{frame}
+
+\begin{frame}{FreeFina DomeBond Uah share}
+\protect\hypertarget{freefina-domebond-uah-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-22.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok DomeBond Uah dynamics}
+\protect\hypertarget{intebrok-domebond-uah-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-23.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok DomeBond Uah share}
+\protect\hypertarget{intebrok-domebond-uah-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-24.pdf}
+
+\end{frame}
+
+\begin{frame}{Priv DomeBond Uah dynamics}
+\protect\hypertarget{priv-domebond-uah-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-25.pdf}
+
+\end{frame}
+
+\begin{frame}{Priv DomeBond Uah share}
+\protect\hypertarget{priv-domebond-uah-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-26.pdf}
+
+\end{frame}
+
+\begin{frame}{FreeFina DomeBond Eur dynamics}
+\protect\hypertarget{freefina-domebond-eur-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-27.pdf}
+
+\end{frame}
+
+\begin{frame}{FreeFina DomeBond Eur share}
+\protect\hypertarget{freefina-domebond-eur-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-28.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok DomeBond Eur dynamics}
+\protect\hypertarget{intebrok-domebond-eur-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-29.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok DomeBond Eur share}
+\protect\hypertarget{intebrok-domebond-eur-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-30.pdf}
+
+\end{frame}
+
+\begin{frame}{Priv DomeBond Eur dynamics}
+\protect\hypertarget{priv-domebond-eur-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-31.pdf}
+
+\end{frame}
+
+\begin{frame}{Priv DomeBond Eur share}
+\protect\hypertarget{priv-domebond-eur-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-32.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok Shar Usd dynamics}
+\protect\hypertarget{intebrok-shar-usd-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-33.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok Shar Usd share}
+\protect\hypertarget{intebrok-shar-usd-share}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-34.pdf}
+
+\end{frame}
+
+\begin{frame}{Account *8364 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-35.pdf}}
+\protect\hypertarget{account-8364-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *8364 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-36.pdf}}
+\protect\hypertarget{account-8364-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *7536 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-37.pdf}}
+\protect\hypertarget{account-7536-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *7536 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-38.pdf}}
+\protect\hypertarget{account-7536-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *3047 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-39.pdf}}
+\protect\hypertarget{account-3047-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *3047 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-40.pdf}}
+\protect\hypertarget{account-3047-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *7375 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-41.pdf}}
+\protect\hypertarget{account-7375-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *7375 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-42.pdf}}
+\protect\hypertarget{account-7375-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *7010 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-43.pdf}}
+\protect\hypertarget{account-7010-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *7010 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-44.pdf}}
+\protect\hypertarget{account-7010-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *1305 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-45.pdf}}
+\protect\hypertarget{account-1305-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *1305 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-46.pdf}}
+\protect\hypertarget{account-1305-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *5507 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-47.pdf}}
+\protect\hypertarget{account-5507-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *5507 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-48.pdf}}
+\protect\hypertarget{account-5507-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *3061 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-49.pdf}}
+\protect\hypertarget{account-3061-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *3061 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-50.pdf}}
+\protect\hypertarget{account-3061-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *9241 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-51.pdf}}
+\protect\hypertarget{account-9241-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *9241 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-52.pdf}}
+\protect\hypertarget{account-9241-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *9579 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-53.pdf}}
+\protect\hypertarget{account-9579-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *9579 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-54.pdf}}
+\protect\hypertarget{account-9579-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *6409 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-55.pdf}}
+\protect\hypertarget{account-6409-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *6409 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-56.pdf}}
+\protect\hypertarget{account-6409-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *7625 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-57.pdf}}
+\protect\hypertarget{account-7625-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *7625 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-58.pdf}}
+\protect\hypertarget{account-7625-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *2126 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-59.pdf}}
+\protect\hypertarget{account-2126-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *2126 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-60.pdf}}
+\protect\hypertarget{account-2126-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *8765 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-61.pdf}}
+\protect\hypertarget{account-8765-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *8765 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-62.pdf}}
+\protect\hypertarget{account-8765-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *1788 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-63.pdf}}
+\protect\hypertarget{account-1788-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *1788 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-64.pdf}}
+\protect\hypertarget{account-1788-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *1450 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-65.pdf}}
+\protect\hypertarget{account-1450-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *1450 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-66.pdf}}
+\protect\hypertarget{account-1450-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *8761 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-67.pdf}}
+\protect\hypertarget{account-8761-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *8761 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-68.pdf}}
+\protect\hypertarget{account-8761-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *5850 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-69.pdf}}
+\protect\hypertarget{account-5850-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *5850 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-70.pdf}}
+\protect\hypertarget{account-5850-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *2487 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-71.pdf}}
+\protect\hypertarget{account-2487-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *2487 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-72.pdf}}
+\protect\hypertarget{account-2487-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *1520 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-73.pdf}}
+\protect\hypertarget{account-1520-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *1520 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-74.pdf}}
+\protect\hypertarget{account-1520-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *8067 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-75.pdf}}
+\protect\hypertarget{account-8067-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *8067 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-76.pdf}}
+\protect\hypertarget{account-8067-share}{}
+
+\end{frame}
+
+\begin{frame}{Account *8029 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-77.pdf}}
+\protect\hypertarget{account-8029-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *8029 share
+\includegraphics{report_files/figure-beamer/unnamed-chunk-8-78.pdf}}
+\protect\hypertarget{account-8029-share}{}
+
+\end{frame}
+
+\hypertarget{holdings}{%
+\section{Holdings}\label{holdings}}
+
+\begin{frame}{Dynamics by currency}
+\protect\hypertarget{dynamics-by-currency}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-9-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Currency}
+\protect\hypertarget{currency}{}
+
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\begin{table}[ht]
+\centering
+\scalebox{0.5}{
+\begin{tabular}{rrrrrrr}
+  \hline
+ & {\textbf{UAH}} & {\textbf{USD}} & {\textbf{EUR}} & {\textbf{CHF}} & {\textbf{GLD}} & {\textbf{BTC}} \\ 
+  \hline
+{\textbf{Nov 19}} & 45000.00 & 2000.00 & 1000.00 & 200.00 & 0.50 & 0.02 \\ 
+  {\textbf{Dec 19}} & 89107.93 & 3995.48 & 2015.51 & 368.18 & 0.97 & 0.03 \\ 
+  {\textbf{Jan 20}} & 184782.01 & 7852.32 & 4336.99 & 738.06 & 1.85 & 0.07 \\ 
+  {\textbf{Feb 20}} & 348868.32 & 17027.58 & 8911.89 & 1515.12 & 3.59 & 0.12 \\ 
+  {\textbf{Mar 20}} & 670861.75 & 34186.65 & 18616.28 & 3075.19 & 7.44 & 0.24 \\ 
+  {\textbf{Apr 20}} & 1369868.98 & 65137.76 & 35383.70 & 6355.13 & 15.90 & 0.48 \\ 
+  {\textbf{May 20}} & 2719504.78 & 133700.10 & 64899.40 & 11191.46 & 30.94 & 0.93 \\ 
+  {\textbf{Jun 20}} & 5856654.03 & 258688.45 & 124764.20 & 22122.94 & 67.41 & 1.76 \\ 
+  {\textbf{Jul 20}} & 10963402.99 & 511005.15 & 246911.78 & 45657.58 & 140.14 & 3.48 \\ 
+  {\textbf{Aug 20}} & 21498737.56 & 1032981.33 & 448244.97 & 88152.77 & 280.20 & 7.07 \\ 
+  {\textbf{Sep 20}} & 39740789.30 & 2195222.80 & 918734.73 & 169446.73 & 503.84 & 14.82 \\ 
+  {\textbf{Oct 20}} & 72452521.00 & 4144333.39 & 1732496.91 & 357433.39 & 1050.10 & 27.42 \\ 
+  {\textbf{Nov 20}} & 149696131.19 & 8777244.40 & 3469251.56 & 789628.91 & 2064.63 & 52.38 \\ 
+  {\textbf{Dec 20}} & 298975037.49 & 15997768.19 & 6886717.90 & 1573228.75 & 3955.28 & 99.24 \\ 
+  {\textbf{Jan 21}} & 588287708.65 & 31714625.72 & 14695244.35 & 3079001.76 & 7849.55 & 188.35 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\includegraphics{report_files/figure-beamer/unnamed-chunk-11-1.pdf}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Currency consolidation}
+\protect\hypertarget{currency-consolidation}{}
+
+\begin{table}[ht]
+\centering
+\scalebox{0.5}{
+\begin{tabular}{rrrrrrrr}
+  \hline
+ & {\textbf{Total}} & {\textbf{UAH}} & {\textbf{USD}} & {\textbf{EUR}} & {\textbf{CHF}} & {\textbf{GLD}} & {\textbf{BTC}} \\ 
+  \hline
+{\textbf{Nov 19}} & 144544.07 & 45000.00 & 47814.74 & 26341.50 & 4781.10 & 17597.60 & 3009.14 \\ 
+  {\textbf{Dec 19}} & 287055.82 & 89107.93 & 94671.47 & 53632.66 & 9017.86 & 35162.12 & 5463.78 \\ 
+  {\textbf{Jan 20}} & 609899.74 & 184782.01 & 196691.16 & 119922.14 & 19191.52 & 73886.58 & 15426.32 \\ 
+  {\textbf{Feb 20}} & 1213455.86 & 348868.32 & 418896.76 & 241138.85 & 38640.24 & 140894.05 & 25017.65 \\ 
+  {\textbf{Mar 20}} & 2646520.04 & 670861.75 & 950235.77 & 565525.21 & 88880.42 & 327288.01 & 43728.88 \\ 
+  {\textbf{Apr 20}} & 5176810.58 & 1369868.98 & 1755102.46 & 1036774.23 & 177151.75 & 726960.72 & 110952.45 \\ 
+  {\textbf{May 20}} & 10248011.81 & 2719504.78 & 3588876.91 & 1939934.01 & 312706.41 & 1452061.83 & 234927.87 \\ 
+  {\textbf{Jun 20}} & 20759130.55 & 5856654.03 & 6901973.39 & 3731023.36 & 623198.70 & 3216158.21 & 430122.85 \\ 
+  {\textbf{Jul 20}} & 43405857.05 & 10963402.99 & 14162998.20 & 8104978.05 & 1385312.94 & 7694690.03 & 1094474.84 \\ 
+  {\textbf{Aug 20}} & 84816666.38 & 21498737.56 & 28424929.40 & 14715703.01 & 2683243.17 & 15226066.50 & 2267986.75 \\ 
+  {\textbf{Sep 20}} & 169057916.77 & 39740789.30 & 62146252.44 & 30446593.44 & 5209036.05 & 26991859.04 & 4523386.51 \\ 
+  {\textbf{Oct 20}} & 326624777.64 & 72452521.00 & 117948225.50 & 57562556.47 & 11081498.26 & 56806883.25 & 10773093.17 \\ 
+  {\textbf{Nov 20}} & 677300230.26 & 149696131.19 & 250154537.30 & 118506510.91 & 24774614.48 & 104781197.61 & 29387238.78 \\ 
+  {\textbf{Dec 20}} & 1337206656.51 & 298975037.49 & 453203014.77 & 239527623.89 & 50477784.81 & 213521700.00 & 81501495.54 \\ 
+  {\textbf{Jan 21}} & 2663899233.76 & 588287708.65 & 891066810.11 & 501137222.87 & 97045125.70 & 410537064.49 & 175825301.94 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Portfolio by currency}
+\protect\hypertarget{portfolio-by-currency}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-13-1.pdf}
+
+\end{frame}
+
+\begin{frame}{UAH dynamics}
+\protect\hypertarget{uah-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-1.pdf}
+
+\end{frame}
+
+\begin{frame}{UAH growth}
+\protect\hypertarget{uah-growth}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-2.pdf}
+
+\end{frame}
+
+\begin{frame}{UAH performance}
+\protect\hypertarget{uah-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-3.pdf}
+
+\end{frame}
+
+\begin{frame}{UAH by place performance}
+\protect\hypertarget{uah-by-place-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-4.pdf}
+
+\end{frame}
+
+\begin{frame}{UAH share by place}
+\protect\hypertarget{uah-share-by-place}{}
+
+\begin{columns}\begin{column}{0.6\textwidth}\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{rrrrrrrrrrr}
+  \hline
+ & {\textbf{PrivatBank}} & {\textbf{oschadbank}} & {\textbf{Raiffeisen Bank Aval}} & {\textbf{Crédit Agricole}} & {\textbf{Pumb}} & {\textbf{Ukr Exim}} & {\textbf{Alfa}} & {\textbf{Cash}} & {\textbf{Freedom Finance}} & {\textbf{Interactive brokers}} \\ 
+  \hline
+{\textbf{Nov 19}} & 5323.90 & 3156.56 & 15116.80 & 7856.46 & 757.12 & 763.97 & 3386.73 & 2396.52 & 2296.93 & 3945.02 \\ 
+  {\textbf{Dec 19}} & 8775.84 & 8098.04 & 21927.23 & 6793.87 & 1932.14 & 7437.22 & 8068.73 & 7815.69 & 8700.83 & 9558.33 \\ 
+  {\textbf{Jan 20}} & 9502.51 & 3828.96 & 38634.13 & 41114.71 & 22921.44 & 23294.91 & 13687.71 & 22800.06 & 205.16 & 8792.43 \\ 
+  {\textbf{Feb 20}} & 33738.18 & 20475.28 & 144086.57 & 42712.02 & 679.21 & 32457.34 & 7330.37 & 11388.92 & 13205.30 & 42795.13 \\ 
+  {\textbf{Mar 20}} & 24953.22 & 18663.79 & 112003.68 & 67604.92 & 55735.02 & 39038.60 & 114112.25 & 82072.18 & 93686.15 & 62991.94 \\ 
+  {\textbf{Apr 20}} & 62905.11 & 194979.35 & 348320.45 & 136193.94 & 170197.40 & 49830.19 & 67981.25 & 9162.47 & 93561.01 & 236737.81 \\ 
+  {\textbf{May 20}} & 117438.44 & 345884.26 & 1043569.79 & 456578.61 & 186426.47 & 79762.81 & 250819.40 & 173285.85 & 63507.76 & 2231.39 \\ 
+  {\textbf{Jun 20}} & 365689.15 & 646685.69 & 1857926.84 & 769862.67 & 494234.14 & 753008.47 & 705008.55 & 66374.00 & 144003.46 & 53861.06 \\ 
+  {\textbf{Jul 20}} & 658515.62 & 1239558.61 & 2793436.60 & 874587.43 & 926049.94 & 659074.51 & 1347006.64 & 1322492.34 & 664126.55 & 478554.75 \\ 
+  {\textbf{Aug 20}} & 2356780.57 & 142161.18 & 6450704.59 & 4280675.25 & 1492031.91 & 2208441.90 & 9399.25 & 2088461.52 & 1260420.03 & 1209661.35 \\ 
+  {\textbf{Sep 20}} & 3602565.16 & 4047282.65 & 13191691.32 & 6462304.20 & 3963076.77 & 2353650.36 & 1449220.88 & 2075528.63 & 250895.51 & 2344573.81 \\ 
+  {\textbf{Oct 20}} & 204469.63 & 365068.36 & 32727192.24 & 11706031.24 & 77527.85 & 1745250.05 & 8290777.43 & 1226470.21 & 4889490.01 & 11220243.97 \\ 
+  {\textbf{Nov 20}} & 25374415.01 & 8844725.92 & 47619553.48 & 9213875.93 & 5415818.59 & 7425687.46 & 15939130.39 & 1357009.97 & 19662322.14 & 8843592.31 \\ 
+  {\textbf{Dec 20}} & 4936406.43 & 25173873.55 & 105357539.02 & 46246997.51 & 21018970.27 & 32544700.68 & 9577443.90 & 17592052.48 & 5930527.82 & 30596525.84 \\ 
+  {\textbf{Jan 21}} & 16166681.80 & 22806520.35 & 104826435.41 & 146894265.88 & 21116082.30 & 4389419.90 & 73665608.75 & 78185974.77 & 85415648.90 & 34821070.58 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}\begin{column}{0.4\textwidth}\vspace*{-6cm}\hspace*{-0.5cm}\includegraphics[scale=.3]{ plots/UAH_placeSharePlot.jpg }\end{column}\end{columns}
+
+\end{frame}
+
+\begin{frame}{USD dynamics}
+\protect\hypertarget{usd-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-5.pdf}
+
+\end{frame}
+
+\begin{frame}{USD growth}
+\protect\hypertarget{usd-growth}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-6.pdf}
+
+\end{frame}
+
+\begin{frame}{USD performance}
+\protect\hypertarget{usd-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-7.pdf}
+
+\end{frame}
+
+\begin{frame}{USD by place performance}
+\protect\hypertarget{usd-by-place-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-8.pdf}
+
+\end{frame}
+
+\begin{frame}{USD share by place}
+\protect\hypertarget{usd-share-by-place}{}
+
+\begin{columns}\begin{column}{0.6\textwidth}\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{rrrrrrrrr}
+  \hline
+ & {\textbf{PrivatBank}} & {\textbf{oschadbank}} & {\textbf{Raiffeisen Bank Aval}} & {\textbf{Crédit Agricole}} & {\textbf{Pumb}} & {\textbf{Ukr Exim}} & {\textbf{Cash}} & {\textbf{Interactive brokers}} \\ 
+  \hline
+{\textbf{Nov 19}} & 249.96 & 638.94 & 481.78 & 139.96 & 265.41 & 10.01 & 12.13 & 201.81 \\ 
+  {\textbf{Dec 19}} & 102.65 & 906.14 & 889.01 & 391.51 & 696.22 & 163.20 & 395.45 & 451.30 \\ 
+  {\textbf{Jan 20}} & 693.21 & 890.01 & 2210.33 & 188.99 & 2405.68 & 440.56 & 775.94 & 247.60 \\ 
+  {\textbf{Feb 20}} & 674.19 & 6711.70 & 3463.56 & 988.69 & 3405.22 & 84.60 & 997.21 & 702.41 \\ 
+  {\textbf{Mar 20}} & 785.65 & 10681.12 & 4304.56 & 3447.75 & 7265.34 & 2064.79 & 3096.21 & 2541.24 \\ 
+  {\textbf{Apr 20}} & 3880.27 & 25543.57 & 10177.37 & 1563.38 & 13640.54 & 3283.87 & 964.57 & 6084.19 \\ 
+  {\textbf{May 20}} & 11521.78 & 28443.72 & 29436.52 & 4841.93 & 42727.13 & 12639.67 & 2041.02 & 2048.33 \\ 
+  {\textbf{Jun 20}} & 24047.99 & 92621.67 & 40048.25 & 6737.62 & 43052.04 & 27477.61 & 16412.92 & 8290.33 \\ 
+  {\textbf{Jul 20}} & 47086.57 & 118217.25 & 104117.01 & 28397.15 & 71065.31 & 50364.06 & 45875.44 & 45882.36 \\ 
+  {\textbf{Aug 20}} & 101848.98 & 207702.19 & 243627.90 & 100364.84 & 251640.84 & 1766.19 & 90747.04 & 35283.35 \\ 
+  {\textbf{Sep 20}} & 271973.08 & 464466.83 & 519833.30 & 98183.69 & 443154.32 & 249900.49 & 140126.40 & 7584.68 \\ 
+  {\textbf{Oct 20}} & 403921.68 & 907650.88 & 1233418.01 & 200526.85 & 685081.99 & 272418.84 & 97025.92 & 344289.21 \\ 
+  {\textbf{Nov 20}} & 899718.13 & 1936321.20 & 1574163.30 & 1082193.76 & 1267304.21 & 697687.60 & 798663.73 & 521192.47 \\ 
+  {\textbf{Dec 20}} & 817971.35 & 4299064.24 & 2861587.04 & 1270722.55 & 4531709.41 & 584857.75 & 1259259.41 & 372596.44 \\ 
+  {\textbf{Jan 21}} & 3617765.63 & 8080107.59 & 4283279.10 & 2790070.77 & 6131316.59 & 2259658.26 & 2241045.05 & 2311382.73 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}\begin{column}{0.4\textwidth}\vspace*{-6cm}\hspace*{-0.5cm}\includegraphics[scale=.3]{ plots/USD_placeSharePlot.jpg }\end{column}\end{columns}
+
+\end{frame}
+
+\begin{frame}{EUR dynamics}
+\protect\hypertarget{eur-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-9.pdf}
+
+\end{frame}
+
+\begin{frame}{EUR growth}
+\protect\hypertarget{eur-growth}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-10.pdf}
+
+\end{frame}
+
+\begin{frame}{EUR performance}
+\protect\hypertarget{eur-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-11.pdf}
+
+\end{frame}
+
+\begin{frame}{EUR by place performance}
+\protect\hypertarget{eur-by-place-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-12.pdf}
+
+\end{frame}
+
+\begin{frame}{EUR share by place}
+\protect\hypertarget{eur-share-by-place}{}
+
+\begin{columns}\begin{column}{0.6\textwidth}\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{rrrrrrr}
+  \hline
+ & {\textbf{PrivatBank}} & {\textbf{Raiffeisen Bank Aval}} & {\textbf{Crédit Agricole}} & {\textbf{Ukr Exim}} & {\textbf{Freedom Finance}} & {\textbf{Interactive brokers}} \\ 
+  \hline
+{\textbf{Nov 19}} & 328.76 & 146.50 & 152.92 & 266.60 & 87.53 & 17.68 \\ 
+  {\textbf{Dec 19}} & 278.70 & 386.14 & 404.27 & 531.38 & 244.08 & 170.94 \\ 
+  {\textbf{Jan 20}} & 1180.35 & 889.70 & 898.03 & 801.99 & 26.72 & 540.20 \\ 
+  {\textbf{Feb 20}} & 2877.12 & 2878.53 & 1937.00 & 93.07 & 934.03 & 192.15 \\ 
+  {\textbf{Mar 20}} & 4342.38 & 2725.56 & 3264.66 & 3484.38 & 3705.85 & 1093.44 \\ 
+  {\textbf{Apr 20}} & 8320.78 & 6749.88 & 7223.75 & 4826.60 & 918.11 & 7344.58 \\ 
+  {\textbf{May 20}} & 10412.91 & 20052.54 & 6898.03 & 11071.82 & 5442.98 & 11021.13 \\ 
+  {\textbf{Jun 20}} & 36752.85 & 35392.17 & 12522.86 & 19846.09 & 8900.49 & 11349.73 \\ 
+  {\textbf{Jul 20}} & 31184.55 & 47091.28 & 58583.58 & 5979.75 & 54644.64 & 49427.97 \\ 
+  {\textbf{Aug 20}} & 192287.64 & 42144.81 & 12444.96 & 436.19 & 157930.82 & 43000.56 \\ 
+  {\textbf{Sep 20}} & 201493.91 & 203352.10 & 65649.50 & 178259.08 & 149574.37 & 120405.78 \\ 
+  {\textbf{Oct 20}} & 926040.38 & 146467.28 & 271934.55 & 81656.99 & 203856.27 & 102541.45 \\ 
+  {\textbf{Nov 20}} & 773385.37 & 1077001.06 & 676915.67 & 738217.94 & 113204.08 & 90527.43 \\ 
+  {\textbf{Dec 20}} & 1619183.44 & 1371254.95 & 1800035.77 & 603779.11 & 810469.99 & 681994.63 \\ 
+  {\textbf{Jan 21}} & 2710325.88 & 4235052.34 & 2391179.36 & 1490051.81 & 2771821.60 & 1096813.36 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}\begin{column}{0.4\textwidth}\vspace*{-6cm}\hspace*{-0.5cm}\includegraphics[scale=.3]{ plots/EUR_placeSharePlot.jpg }\end{column}\end{columns}
+
+\end{frame}
+
+\begin{frame}{CHF dynamics}
+\protect\hypertarget{chf-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-13.pdf}
+
+\end{frame}
+
+\begin{frame}{CHF growth}
+\protect\hypertarget{chf-growth}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-14.pdf}
+
+\end{frame}
+
+\begin{frame}{CHF performance}
+\protect\hypertarget{chf-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-15.pdf}
+
+\end{frame}
+
+\begin{frame}{CHF by place performance}
+\protect\hypertarget{chf-by-place-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-16.pdf}
+
+\end{frame}
+
+\begin{frame}{CHF share by place}
+\protect\hypertarget{chf-share-by-place}{}
+
+\begin{columns}\begin{column}{0.6\textwidth}\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{rrr}
+  \hline
+ & {\textbf{Crédit Agricole}} & {\textbf{Alfa}} \\ 
+  \hline
+{\textbf{Nov 19}} & 1.19 & 198.81 \\ 
+  {\textbf{Dec 19}} & 306.82 & 61.36 \\ 
+  {\textbf{Jan 20}} & 261.02 & 477.04 \\ 
+  {\textbf{Feb 20}} & 1165.83 & 349.29 \\ 
+  {\textbf{Mar 20}} & 300.25 & 2774.94 \\ 
+  {\textbf{Apr 20}} & 5648.67 & 706.46 \\ 
+  {\textbf{May 20}} & 4379.25 & 6812.21 \\ 
+  {\textbf{Jun 20}} & 7098.42 & 15024.53 \\ 
+  {\textbf{Jul 20}} & 34268.05 & 11389.53 \\ 
+  {\textbf{Aug 20}} & 39214.80 & 48937.97 \\ 
+  {\textbf{Sep 20}} & 89699.43 & 79747.30 \\ 
+  {\textbf{Oct 20}} & 245553.65 & 111879.74 \\ 
+  {\textbf{Nov 20}} & 326154.28 & 463474.63 \\ 
+  {\textbf{Dec 20}} & 660671.71 & 912557.04 \\ 
+  {\textbf{Jan 21}} & 1731879.28 & 1347122.48 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}\begin{column}{0.4\textwidth}\vspace*{-6cm}\hspace*{-0.5cm}\includegraphics[scale=.3]{ plots/CHF_placeSharePlot.jpg }\end{column}\end{columns}
+
+\end{frame}
+
+\begin{frame}{GLD dynamics}
+\protect\hypertarget{gld-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-17.pdf}
+
+\end{frame}
+
+\begin{frame}{GLD growth}
+\protect\hypertarget{gld-growth}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-18.pdf}
+
+\end{frame}
+
+\begin{frame}{GLD performance}
+\protect\hypertarget{gld-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-19.pdf}
+
+\end{frame}
+
+\begin{frame}{GLD by place performance}
+\protect\hypertarget{gld-by-place-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-20.pdf}
+
+\end{frame}
+
+\begin{frame}{GLD share by place}
+\protect\hypertarget{gld-share-by-place}{}
+
+\begin{columns}\begin{column}{0.6\textwidth}\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{rrrr}
+  \hline
+ & {\textbf{PrivatBank}} & {\textbf{Crédit Agricole}} & {\textbf{Interactive brokers}} \\ 
+  \hline
+{\textbf{Nov 19}} & 0.25 & 0.15 & 0.10 \\ 
+  {\textbf{Dec 19}} & 0.37 & 0.40 & 0.20 \\ 
+  {\textbf{Jan 20}} & 0.80 & 0.79 & 0.26 \\ 
+  {\textbf{Feb 20}} & 1.18 & 0.96 & 1.45 \\ 
+  {\textbf{Mar 20}} & 1.99 & 4.11 & 1.34 \\ 
+  {\textbf{Apr 20}} & 2.98 & 7.67 & 5.25 \\ 
+  {\textbf{May 20}} & 4.13 & 17.86 & 8.95 \\ 
+  {\textbf{Jun 20}} & 14.32 & 29.74 & 23.35 \\ 
+  {\textbf{Jul 20}} & 19.63 & 44.08 & 76.43 \\ 
+  {\textbf{Aug 20}} & 57.15 & 198.73 & 24.32 \\ 
+  {\textbf{Sep 20}} & 155.06 & 166.05 & 182.74 \\ 
+  {\textbf{Oct 20}} & 262.60 & 205.03 & 582.47 \\ 
+  {\textbf{Nov 20}} & 943.31 & 1086.32 & 35.00 \\ 
+  {\textbf{Dec 20}} & 1425.03 & 336.20 & 2194.05 \\ 
+  {\textbf{Jan 21}} & 2625.35 & 3793.94 & 1430.26 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}\begin{column}{0.4\textwidth}\vspace*{-6cm}\hspace*{-0.5cm}\includegraphics[scale=.3]{ plots/GLD_placeSharePlot.jpg }\end{column}\end{columns}
+
+\end{frame}
+
+\begin{frame}{BTC dynamics}
+\protect\hypertarget{btc-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-21.pdf}
+
+\end{frame}
+
+\begin{frame}{BTC growth}
+\protect\hypertarget{btc-growth}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-22.pdf}
+
+\end{frame}
+
+\begin{frame}{BTC performance}
+\protect\hypertarget{btc-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-23.pdf}
+
+\end{frame}
+
+\begin{frame}{BTC by place performance}
+\protect\hypertarget{btc-by-place-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-14-24.pdf}
+
+\end{frame}
+
+\begin{frame}{BTC share by place}
+\protect\hypertarget{btc-share-by-place}{}
+
+\begin{columns}\begin{column}{0.6\textwidth}\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{rr}
+  \hline
+ & {\textbf{Interactive brokers}} \\ 
+  \hline
+{\textbf{Nov 19}} & 0.02 \\ 
+  {\textbf{Dec 19}} & 0.03 \\ 
+  {\textbf{Jan 20}} & 0.07 \\ 
+  {\textbf{Feb 20}} & 0.12 \\ 
+  {\textbf{Mar 20}} & 0.24 \\ 
+  {\textbf{Apr 20}} & 0.48 \\ 
+  {\textbf{May 20}} & 0.93 \\ 
+  {\textbf{Jun 20}} & 1.76 \\ 
+  {\textbf{Jul 20}} & 3.48 \\ 
+  {\textbf{Aug 20}} & 7.07 \\ 
+  {\textbf{Sep 20}} & 14.82 \\ 
+  {\textbf{Oct 20}} & 27.42 \\ 
+  {\textbf{Nov 20}} & 52.38 \\ 
+  {\textbf{Dec 20}} & 99.24 \\ 
+  {\textbf{Jan 21}} & 188.35 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}\begin{column}{0.4\textwidth}\vspace*{-6cm}\hspace*{-0.5cm}\includegraphics[scale=.3]{ plots/BTC_placeSharePlot.jpg }\end{column}\end{columns}
+
+\end{frame}
+
+\begin{frame}{Place diversification}
+\protect\hypertarget{place-diversification}{}
+
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{table}[ht]
+\centering
+\scalebox{0.5}{
+\begin{tabular}{rlrll}
+  \hline
+ & {\textbf{Total}} & {\textbf{Herfindail}} & {\textbf{Shanon}} & {\textbf{No}} \\ 
+  \hline
+{\textbf{Nov 19}} & 144.54k & 0.14 & 2.085 & 10 \\ 
+  {\textbf{Dec 19}} & 287.06k & 0.12 & 2.187 & 10 \\ 
+  {\textbf{Jan 20}} & 609.9k & 0.14 & 2.086 & 9 \\ 
+  {\textbf{Feb 20}} & 1213.46k & 0.15 & 2.021 & 10 \\ 
+  {\textbf{Mar 20}} & 2646.52k & 0.11 & 2.261 & 10 \\ 
+  {\textbf{Apr 20}} & 5176.81k & 0.14 & 2.032 & 10 \\ 
+  {\textbf{May 20}} & 10248.01k & 0.14 & 2.095 & 10 \\ 
+  {\textbf{Jun 20}} & 20759.13k & 0.13 & 2.141 & 10 \\ 
+  {\textbf{Jul 20}} & 43405.86k & 0.13 & 2.164 & 10 \\ 
+  {\textbf{Aug 20}} & 84816.67k & 0.14 & 2.087 & 10 \\ 
+  {\textbf{Sep 20}} & 169057.92k & 0.13 & 2.135 & 10 \\ 
+  {\textbf{Oct 20}} & 326624.78k & 0.15 & 2.023 & 10 \\ 
+  {\textbf{Nov 20}} & 677300.23k & 0.14 & 2.122 & 10 \\ 
+  {\textbf{Dec 20}} & 1337206.66k & 0.13 & 2.121 & 10 \\ 
+  {\textbf{Jan 21}} & 2663899.23k & 0.13 & 2.173 & 10 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+\end{column}
+
+\begin{column}{0.8\textwidth}
+\includegraphics{report_files/figure-beamer/unnamed-chunk-16-1.pdf}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Place performance}
+\protect\hypertarget{place-performance}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-17-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Place consolidation}
+\protect\hypertarget{place-consolidation}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-18-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Dynamics by Holding Type}
+\protect\hypertarget{dynamics-by-holding-type}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-19-1.pdf}
+
+\end{frame}
+
+\begin{frame}{UAH Dynamics by Holding Type}
+\protect\hypertarget{uah-dynamics-by-holding-type}{}
+
+\begin{table}[ht]
+\centering
+\scalebox{0.4}{
+\begin{tabular}{rrrrrrrrrr}
+  \hline
+ & {\textbf{Cash}} & {\textbf{Current Account}} & {\textbf{Savings Account}} & {\textbf{Domestic Bonds}} & {\textbf{Short Deposit}} & {\textbf{Long Deposit}} & {\textbf{Shares}} & {\textbf{Bank Metals}} & {\textbf{Cryptocurrency}} \\ 
+  \hline
+{\textbf{Nov 19}} & 2686.51 & 30318.84 & 14784.44 & 18937.33 & 22943.52 & 29441.96 & 4824.73 & 17597.60 & 3009.14 \\ 
+  {\textbf{Dec 19}} & 17185.80 & 53356.48 & 51856.73 & 44665.03 & 45832.10 & 22840.33 & 10693.45 & 35162.12 & 5463.78 \\ 
+  {\textbf{Jan 20}} & 42236.41 & 131678.03 & 87728.81 & 48787.45 & 95244.35 & 108709.70 & 6202.07 & 73886.58 & 15426.32 \\ 
+  {\textbf{Feb 20}} & 35921.32 & 281526.32 & 223785.52 & 157966.66 & 140805.13 & 190259.17 & 17280.04 & 140894.05 & 25017.65 \\ 
+  {\textbf{Mar 20}} & 168133.07 & 530993.86 & 330367.58 & 344655.73 & 625374.29 & 205343.60 & 70635.02 & 327288.01 & 43728.88 \\ 
+  {\textbf{Apr 20}} & 35152.27 & 1023684.96 & 707992.21 & 736654.46 & 950993.96 & 720484.27 & 163935.29 & 726960.72 & 110952.45 \\ 
+  {\textbf{May 20}} & 228072.38 & 2089869.26 & 1326416.83 & 730679.10 & 2455599.96 & 1675401.82 & 54982.75 & 1452061.83 & 234927.87 \\ 
+  {\textbf{Jun 20}} & 504281.25 & 4745737.60 & 2581286.90 & 1346050.55 & 4547696.67 & 3166605.13 & 221191.40 & 3216158.21 & 430122.85 \\ 
+  {\textbf{Jul 20}} & 2593974.12 & 4917740.57 & 6190485.79 & 5574680.91 & 8542106.28 & 5526030.78 & 1271673.71 & 7694690.03 & 1094474.84 \\ 
+  {\textbf{Aug 20}} & 4585581.27 & 11131390.11 & 7304411.93 & 15017304.55 & 13364304.89 & 14948715.47 & 970904.91 & 15226066.50 & 2267986.75 \\ 
+  {\textbf{Sep 20}} & 6042474.72 & 34240479.69 & 15973686.47 & 20402327.73 & 33969859.37 & 26699122.63 & 214720.62 & 26991859.04 & 4523386.51 \\ 
+  {\textbf{Oct 20}} & 3987839.48 & 68946720.65 & 33727729.74 & 41208921.56 & 49534684.18 & 51840393.32 & 9798512.29 & 56806883.25 & 10773093.17 \\ 
+  {\textbf{Nov 20}} & 24119205.87 & 96403958.11 & 93861725.63 & 83988043.48 & 150221689.68 & 79683003.39 & 14854167.71 & 104781197.61 & 29387238.78 \\ 
+  {\textbf{Dec 20}} & 53265788.72 & 227819378.27 & 214654715.19 & 134364829.73 & 229154622.66 & 172368789.75 & 10555336.66 & 213521700.00 & 81501495.54 \\ 
+  {\textbf{Jan 21}} & 141151272.81 & 358135126.92 & 277150849.88 & 337421283.22 & 485455008.12 & 413281792.73 & 64941533.66 & 410537064.49 & 175825301.94 \\ 
+   \hline
+\end{tabular}
+}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Portfolio by Holding Type}
+\protect\hypertarget{portfolio-by-holding-type}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-21-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Cash Uah dynamics}
+\protect\hypertarget{cash-uah-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Cash Usd dynamics}
+\protect\hypertarget{cash-usd-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-2.pdf}
+
+\end{frame}
+
+\begin{frame}{FreeFina DomeBond Uah dynamics}
+\protect\hypertarget{freefina-domebond-uah-dynamics-1}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-3.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok DomeBond Uah dynamics}
+\protect\hypertarget{intebrok-domebond-uah-dynamics-1}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-4.pdf}
+
+\end{frame}
+
+\begin{frame}{Priv DomeBond Uah dynamics}
+\protect\hypertarget{priv-domebond-uah-dynamics-1}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-5.pdf}
+
+\end{frame}
+
+\begin{frame}{FreeFina DomeBond Eur dynamics}
+\protect\hypertarget{freefina-domebond-eur-dynamics-1}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-6.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok DomeBond Eur dynamics}
+\protect\hypertarget{intebrok-domebond-eur-dynamics-1}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-7.pdf}
+
+\end{frame}
+
+\begin{frame}{Priv DomeBond Eur dynamics}
+\protect\hypertarget{priv-domebond-eur-dynamics-1}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-8.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok Shar Usd dynamics}
+\protect\hypertarget{intebrok-shar-usd-dynamics-1}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-9.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok Cryp Btc dynamics}
+\protect\hypertarget{intebrok-cryp-btc-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-10.pdf}
+
+\end{frame}
+
+\begin{frame}{Priv BankMeta Gld dynamics}
+\protect\hypertarget{priv-bankmeta-gld-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-11.pdf}
+
+\end{frame}
+
+\begin{frame}{CrédAgri BankMeta Gld dynamics}
+\protect\hypertarget{cruxe9dagri-bankmeta-gld-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-12.pdf}
+
+\end{frame}
+
+\begin{frame}{InteBrok BankMeta Gld dynamics}
+\protect\hypertarget{intebrok-bankmeta-gld-dynamics}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-13.pdf}
+
+\end{frame}
+
+\begin{frame}{Account *8364 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-14.pdf}}
+\protect\hypertarget{account-8364-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *7536 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-15.pdf}}
+\protect\hypertarget{account-7536-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *5299 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-16.pdf}}
+\protect\hypertarget{account-5299-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *3047 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-17.pdf}}
+\protect\hypertarget{account-3047-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *7375 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-18.pdf}}
+\protect\hypertarget{account-7375-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *7010 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-19.pdf}}
+\protect\hypertarget{account-7010-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *1305 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-20.pdf}}
+\protect\hypertarget{account-1305-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *9977 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-21.pdf}}
+\protect\hypertarget{account-9977-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *5507 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-22.pdf}}
+\protect\hypertarget{account-5507-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *3061 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-23.pdf}}
+\protect\hypertarget{account-3061-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *9241 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-24.pdf}}
+\protect\hypertarget{account-9241-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *9579 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-25.pdf}}
+\protect\hypertarget{account-9579-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *6574 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-26.pdf}}
+\protect\hypertarget{account-6574-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *6409 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-27.pdf}}
+\protect\hypertarget{account-6409-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *7625 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-28.pdf}}
+\protect\hypertarget{account-7625-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *2126 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-29.pdf}}
+\protect\hypertarget{account-2126-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *3754 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-30.pdf}}
+\protect\hypertarget{account-3754-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *8765 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-31.pdf}}
+\protect\hypertarget{account-8765-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *1745 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-32.pdf}}
+\protect\hypertarget{account-1745-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *1788 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-33.pdf}}
+\protect\hypertarget{account-1788-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *2645 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-34.pdf}}
+\protect\hypertarget{account-2645-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *5148 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-35.pdf}}
+\protect\hypertarget{account-5148-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *1450 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-36.pdf}}
+\protect\hypertarget{account-1450-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *2382 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-37.pdf}}
+\protect\hypertarget{account-2382-dynamics}{}
+
+\end{frame}
+
+\begin{frame}{Account *8761 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-38.pdf}}
+\protect\hypertarget{account-8761-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *5850 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-39.pdf}}
+\protect\hypertarget{account-5850-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *2487 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-40.pdf}}
+\protect\hypertarget{account-2487-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *1520 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-41.pdf}}
+\protect\hypertarget{account-1520-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *8067 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-42.pdf}}
+\protect\hypertarget{account-8067-dynamics-1}{}
+
+\end{frame}
+
+\begin{frame}{Account *8029 dynamics
+\includegraphics{report_files/figure-beamer/unnamed-chunk-22-43.pdf}}
+\protect\hypertarget{account-8029-dynamics-1}{}
+
+\end{frame}
+
+\hypertarget{errors}{%
+\section{Errors}\label{errors}}
+
+\begin{frame}{Profit calculations}
+\protect\hypertarget{profit-calculations}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-23-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Profit by currency}
+\protect\hypertarget{profit-by-currency}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-24-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Error absolute}
+\protect\hypertarget{error-absolute}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-25-1.pdf}
+
+\end{frame}
+
+\begin{frame}{Error relative}
+\protect\hypertarget{error-relative}{}
+
+\includegraphics{report_files/figure-beamer/unnamed-chunk-26-1.pdf}
+
+\end{frame}
+
+\end{document}
