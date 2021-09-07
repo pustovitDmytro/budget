@@ -78,13 +78,13 @@ currencyDynamicsPlot(hold_total)
 
 ## Currency
 :::::: {.columns}
-::: {.column width="50%" data-latex="{0.5\textwidth}"}
+::: {.column width="60%"}
 ```{r, echo=FALSE, results='asis'}
 print(xtable(hold_total[, currencies]), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
 ```
 :::
 
-:::::: {.column width="50%" data-latex="{0.5\textwidth}"}
+::: {.column width="60%"}
 ```{r, echo=F, warning=FALSE}
 currencySharePlot()
 ```
@@ -107,16 +107,62 @@ currencyPortfolioPlot(hold_total)
 ```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
 for(currency in currencies){
    if(sum(tail(hold_total[,currency], n=3))>0){
-   cat("\n\n##", currency, " dynamics \n")
-   print(currencyHoldingsPlot(hold_total, currency, "currencyDynamics"))
-   cat("\n\n##", currency, " growth \n")
-   print(currencyHoldingsPlot(hold_total, currency, "currencyDiffAbs"))
-   cat("\n\n##", currency, " performance \n")
-   print(currencyHoldingsPlot(hold_total, currency, "currencyDiffRel"))
-   cat("\n\n##", currency, " by place share \n")
-   print(placeChangePlot(currency))
+      
+      cat("\n\n##", currency, " dynamics \n")
+      print(currencyHoldingsPlot(hold_total, currency, "currencyDynamics"))
+      
+      cat("\n\n##", currency, " growth \n")
+      print(currencyHoldingsPlot(hold_total, currency, "currencyDiffAbs"))
+      
+      cat("\n\n##", currency, " performance \n")
+      print(currencyHoldingsPlot(hold_total, currency, "currencyDiffRel"))
+      
+      cat("\n\n##", currency, " by place performance \n")
+      print(placeChangePlot(currency))
+      
+      jpeg(paste0('plots/',currency,'_placeSharePlot.jpg'), width = 520, height = 548)
+      print(placeSharePlot(currency))
+      dev.off()
+      
+      cat("\n\n##", currency, " share by place\n")
+      
+      cat("\\begin{columns}")
+      cat("\\begin{column}{0.6\\textwidth}")
+      print(xtable(getPlaceHistoryTable(currency)), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+      cat("\\end{column}")
+      cat("\\begin{column}{0.4\\textwidth}")
+      cat("\\vspace*{-6cm}")
+      cat("\\hspace*{-0.5cm}")
+      cat("\\includegraphics[scale=.3]{",paste0('plots/',currency,'_placeSharePlot.jpg'),"}")
+      cat("\\end{column}")
+      cat("\\end{columns}")
    }
 }
+```
+
+## Place diversification
+
+:::::: {.columns}
+::: {.column width="50%"}
+```{r, echo=FALSE, results='asis'}
+print(xtable(diversificationTable(placeConsolidation, pretty=T)), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+```
+:::
+::: {.column width="80%"}
+```{r, echo=FALSE, results='asis'}
+diversificationPiePlot(t(tail(placeConsolidation, n=1)), palette=placesScale)
+```
+:::
+::::::
+
+## Place performance
+```{r, echo=FALSE, results='asis'}
+diversificationPerformancePlot(diversificationTable(placeConsolidation))
+```
+
+## Place consolidation
+```{r, echo=FALSE, results='asis'}
+diversificationBarPlot(t(tail(placeConsolidation, n=1)), palette=placesScale)
 ```
 
 ## Dynamics by Holding Type 

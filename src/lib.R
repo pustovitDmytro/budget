@@ -40,12 +40,16 @@ flowsTotalShares <- function (df){
 }
 
 currencySharePlot<-function(){
+    labels <- asPercentLabel(currency_summary$hold_abs_uah/sum(currency_summary$hold_abs_uah), dropZero = T)
+    names <- as.factor(rownames(currency_summary))
+    avg <- mean(currency_summary$hold_abs_uah)/2
     ggplot(currency_summary) + 
-    geom_bar(aes(x=1, y=hold_abs_uah, fill=rownames(currency_summary), colour=rownames(currency_summary)), position="fill", stat = "identity")+
+    geom_bar(aes(x=1, y=hold_abs_uah, fill=names, colour=names), position="fill", stat = "identity")+
+    geom_text(aes(y=hold_abs_uah+avg, label=labels, x=1.2, colour=names), vjust=2, size=5, position="fill", stat = "identity") +
     coord_polar(theta="y") + labs(fill=NULL) +
     scale_fill_manual("currency", values=currSecColor) +
     scale_color_manual("currency", values=currColor) +
-    theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.text=element_text(size=30), legend.position=c(1,0.5), legend.direction='vertical', legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
+    theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.text=element_text(size=15), legend.position=c(1,0.5), legend.direction='vertical', legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
 }
 
 flowsTypeShare<-function(dat, expenses=F){
@@ -203,16 +207,46 @@ getPlaceStatsTable<-function(currency){
   table
 }
 
+getPlaceHistoryTable<-function(currency){
+  table = data.frame(matrix(NA, nrow=nrow(hold_total), ncol = 0))
+  
+  for(place in Places){
+    isMatch = sum(hold_total[(nrow(hold_total)-2):nrow(hold_total),paste0(place,'_',currency)], na.rm=T)>0
+    if(isMatch){
+      column <- paste0(place,'_',currency)
+      table[, place] <- hold_total[, column]
+    }
+  }
+  rownames(table)<-rownames(hold_total)
+  table
+}
+
 placeChangePlot<-function(currency){
   table <- getPlaceStatsTable(currency)
   
-  ggplot(table, aes(x=rownames(table)))+
+  ggplot(table, aes(x=reorder(gsub(" ", "\n",Names),abs_diff)))+
     geom_bar(aes(y=abs_diff, colour=Names, fill=Names), stat = "identity")+
     geom_text(aes(y=abs_diff, label=asKLabel(abs_diff), colour=Names), vjust=1.5, hjust=-0.2, size=3) +
     scale_y_continuous(labels=asKLabel) +
     scale_fill_manual(name = '',  values=alpha(placesScale, 0.4)) +
     scale_color_manual(name = '',  values=placesScale) +
-    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(1,1),  legend.justification=c(1,1), legend.direction='horizontal', legend.background=element_rect(fill="transparent"))
+    coord_flip() +
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.key.size = unit(0.8, 'cm'), legend.position=c(1, 0.5),  legend.justification=c(1,1), legend.direction='vertical', legend.background=element_rect(fill="transparent"))
+}
+
+placeSharePlot<-function(currency){
+  table <- getPlaceStatsTable(currency)
+  
+  labels <- asPercentLabel(table$total/sum(table$total), dropZero=T, min=0.01)
+  avg <- mean(table$total)/5
+  
+  ggplot(table) + 
+    geom_bar(aes(x=1, y=total, fill=reorder(Names, total), colour=reorder(Names, total)), position="fill", stat = "identity")+
+    geom_text(aes(y=total+avg, label=labels, x=1.2, colour=reorder(Names, total)), vjust=3, size=4, position="fill", stat = "identity") +
+    coord_polar(theta="y") + labs(fill=NULL) +
+    scale_fill_manual("currency", values=alpha(placesScale, 0.5)) +
+    scale_color_manual("currency", values=placesScale) +
+    theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.text=element_text(size=15), legend.position=c(0.5,0), legend.direction="horizontal", legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
 }
 
 profitErrorRel<-function(hold_total){
@@ -228,19 +262,19 @@ profitErrorRel<-function(hold_total){
 asPercentLabel <- function (value, flags="", dropZero=F, min=-Inf){
   ifelse(
     is.na(value) | dropZero & value==0 | value<min, 
-    "",
+    NA,
     paste0(formatC(value*100, digits = 1, format = "f", drop0trailing=T,flag=flags),'%')
   )
 }
 
-asKLabel <-function(value, flags="", dropZero=F, min=-Inf){
+asKLabel <-function(value, flags="", dropZero=F, min=-Inf, digits=2){
   ifelse(
     is.na(value) | dropZero & value==0 | value<min, 
     NA, 
     ifelse(
       abs(value)>=1000,
-      paste0(formatC(value/1000, digits = 2, format = "f", drop0trailing=T,flag=flags),'k'),
-      formatC(value, digits = 2, format = "f", drop0trailing=T,flag=flags) 
+      paste0(formatC(value/1000, digits = digits, format = "f", drop0trailing=T,flag=flags),'k'),
+      formatC(value, digits = digits, format = "f", drop0trailing=T,flag=flags) 
     )
   )
 }
@@ -441,4 +475,88 @@ holdAbsDynamicsPlot <- function(holdings,hold_meta,hold_uah, col){
   }
   
   p1
+}
+
+diversificationTable <- function (consolidation, pretty=FALSE){
+  tab = data.frame(matrix(NA, nrow=nrow(consolidation), ncol = 0))
+  tab$Total  <- rowSums(consolidation)
+  weights<-consolidation/tab$Total 
+
+  tab$Herfindail <- rowSums(weights^2)
+  tab$Shanon <- -rowSums(weights*log(weights), na.rm = T)
+  tab$No <- rowSums(weights>0.005)
+  
+  rownames(tab)<-rownames(consolidation)
+  if(pretty){
+    tab$Total <- asKLabel(tab$Total, digits = 2)
+    tab$Shanon <- asKLabel(tab$Shanon, digits = 3)
+    tab$No <- asKLabel(tab$No, digits = 1)
+  }
+  tab
+}
+
+diversificationBarPlot<-function(consolidation, palette){
+  total <- sum(consolidation)
+  labelsPercent <- asPercentLabel(consolidation/total, dropZero=T, min=0.005)
+  Names<-rownames(consolidation)
+  colnames(consolidation)<-c("Total")
+  
+  ggplot(NULL, aes(x=reorder(Names, consolidation), colour=Names))+
+    geom_bar(aes(y=consolidation, fill=Names), stat = "identity")+
+    geom_text(aes(y=consolidation, label=asKLabel(consolidation), colour=Names), vjust=1.5, hjust=-0.2, size=3) +
+    scale_y_continuous(labels=asKLabel) +
+    scale_fill_manual(name = '',  values=alpha(palette, 0.4)) +
+    scale_color_manual(name = '',  values=palette) +
+    coord_flip() +
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.key.size = unit(0.8, 'cm'), legend.position=c(1, 0.2),  legend.justification=c(1,1), legend.direction='horizontal', legend.background=element_rect(fill="transparent"))
+}
+
+diversificationPiePlot<-function(consolidation, palette){
+  relates <- consolidation/sum(consolidation)
+  labels <- asPercentLabel(ifelse(relates>0.01,relates,0), dropZero = T)
+  Names <- as.factor(rownames(consolidation))
+  
+  ggplot(NULL, aes(y=consolidation, fill=reorder(Names, consolidation), colour=reorder(Names, consolidation))) + 
+    geom_bar(aes(x=1), position="fill", stat = "identity")+
+    geom_label(aes(label=labels, x=1.2), fill=alpha('white', 0.5), vjust=1, size=4, position="fill", stat = "identity", na.rm = T) +
+    coord_polar(theta="y") + labs(fill=NULL) +
+    scale_fill_manual("",values= alpha(palette, 0.5)) +
+    scale_color_manual("",values=palette) +
+    theme(axis.text=element_blank(), axis.ticks=element_blank(),  axis.title = element_blank(), legend.text=element_text(size=15), legend.position=c(0.5,0.05), legend.direction='horizontal', legend.background = element_rect(fill="transparent"), legend.title = element_blank(), panel.background = element_blank())
+}
+
+diversificationPerformancePlot <- function(consolidation){
+  pallete = c("#EFBBCF", '#FFD5CD', '#8675A9', '#C3AED6')
+
+  ylim.prim <- c(min(na.omit(consolidation$Shanon)), max(na.omit(consolidation$Shanon)))
+  ylim.sec <- c(max(na.omit(consolidation$Herfindail)), min(na.omit(consolidation$Herfindail)))
+  ylim.third <- c(min(na.omit(consolidation$No)), max(na.omit(consolidation$No)))
+  
+  b <- diff(ylim.prim)/diff(ylim.sec)
+  a <- ylim.prim[1] - b*ylim.sec[1]
+  d <- diff(ylim.prim)/diff(ylim.third)
+  c <- ylim.prim[1] - d*ylim.third[1]
+  
+  ggplot(NULL, aes(x=reorder(row.names(consolidation), consolidation$Total)))+
+    geom_line(aes(y=a+consolidation$Herfindail*b), group=1, size=1.5, colour=alpha(pallete[1], .75)) +
+    geom_text(aes(y=a+consolidation$Herfindail*b, label=asKLabel(consolidation$Herfindail, digits=3)), vjust=-0.5, hjust=-0.15, size=2.5, colour=darken(pallete[1], 1.5)) +
+    geom_line(aes(y=consolidation$Shanon), group=1, size=1.5, colour=alpha(pallete[2], .75))+
+    geom_text(aes(y=consolidation$Shanon, label=asKLabel(consolidation$Shanon, digits=3)), vjust=1, hjust=0.5, size=2.5, colour=darken(pallete[2], 1.5)) +
+    geom_point(size=6*consolidation$Total/max(consolidation$Total), aes(y=c+consolidation$No*d), colour=alpha(pallete[3], 0.5)) +
+    geom_segment(aes(xend=row.names(consolidation), y=0, yend=c+consolidation$No*d), size=1, colour=alpha(pallete[3], .35)) +
+    geom_text(aes(y=0, label=asKLabel(consolidation$No, digits=0)), vjust=-1, hjust=-1, size=3, colour=darken(pallete[3], 1.5)) +
+    theme(axis.title.y.left = element_text(colour = darken(pallete[2], 1.5)),
+          axis.line.y.left = element_line(color = pallete[2], size=1.5), 
+          axis.title.y.right = element_text(colour = darken(pallete[1], 1.5)),
+          axis.line.y.right = element_line(color = pallete[1], size=1.5), 
+          axis.title.x = element_blank(), 
+          panel.background = element_rect(fill = alpha(pallete[4], 0.15))) +
+    scale_y_continuous(sec.axis = sec_axis(~ (. - a)/b, name="Herfindail")) + ylab("Shanon")
+}
+
+darken <- function(color, factor=1.4){
+  col <- col2rgb(color)
+  col <- col/factor
+  col <- rgb(t(col), maxColorValue=255)
+  col
 }

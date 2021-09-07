@@ -162,7 +162,6 @@ print(xtable(mtcars[1:20, c(1:5)]), scalebox='0.5', comment=FALSE, sanitize.coln
 \end{column}
 \begin{column}{0.48\textwidth}
 \includegraphics[scale=.2]{rplot.jpg}
-\\
 ```{r, echo = FALSE, results = 'asis', message=F, warning=F}
 summary(cars)
 ```

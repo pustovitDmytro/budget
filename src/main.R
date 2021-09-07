@@ -65,6 +65,8 @@ hold_uah<-extract_uah(raw_holdings,uah_rates,1, c(1,2,3))
 holdings<-extract_native(raw_holdings, c(1,2,3))
 hold_meta<-as.data.frame(raw_holdings[c(1,2,3),-c(1)])
 hold_total<-as.data.frame(matrix(nrow = nrow(hold_uah), ncol = 0))
+placeConsolidation = data.frame(matrix(NA, nrow=nrow(hold_total), ncol = 0))
+placeConsolidation[,Places]<-0
 
 hold_total[, "abs"]<-0
 hold_total[, "abs_diff"]<-0
@@ -95,6 +97,7 @@ for(currency in currencies){
       currency_abs_diff_colname=paste0(currency_colname,'_abs_diff')
       hold_total[, currency_colname]<-apply(as.data.frame(holdings[,cols]), 1, function(x){sum(unlist(x), na.rm = T)})
       hold_total[, currency_abs_diff_colname]<-c(NA, diff(hold_total[, currency_colname],1))
+      placeConsolidation[, place] <- placeConsolidation[, place] + hold_total[, currency_colname] * rates
     }
   }
 }
@@ -103,8 +106,8 @@ hold_total$flows_profit<-c(NA,uah_flw$Profit)
 hold_total$abs_error<-abs(hold_total$abs_diff-hold_total$flows_profit)
 hold_total$rel_error<-hold_total$abs_error/pmax(abs(hold_total$abs_diff), abs(hold_total$flows_profit))
 
-
 row.names(hold_total) <- row.names(holdings)
+row.names(placeConsolidation)<-rownames(hold_total)
 hold_total$Names<-factor(row.names(hold_total), levels = row.names(hold_total))
 
 hold_uah$total<-apply(t(hold_uah), 2, function(x) sum(x[x > 0], na.rm = TRUE))
@@ -114,4 +117,3 @@ for(ht in holdingTypes){
   cols<-as.vector(which(apply(hold_meta, 2, function(x) as.character(x[2])==ht)))
   hold_total[, ht]<-apply(hold_uah[,cols,drop=F], 1, function(x){sum(x, na.rm = T)})
 }
-
