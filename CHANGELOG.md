@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/pustovitDmytro/budget/compare/v1.4.0...v1.4.1) (2021-09-07)
+
+
+### Docs
+
+* update example.pdf ([b3c640d](https://github.com/pustovitDmytro/budget/commit/b3c640d4dcb09f8649acee353a9c25fb492153ce))
+
 # [1.4.0](https://github.com/pustovitDmytro/budget/compare/v1.3.1...v1.4.0) (2021-09-07)
 
 

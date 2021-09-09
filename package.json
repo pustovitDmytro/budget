@@ -1,6 +1,6 @@
 {
   "name": "budget",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Run without R studio:",
   "main": "index.js",
   "directories": {
