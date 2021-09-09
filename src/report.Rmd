@@ -133,7 +133,7 @@ for(currency in currencies){
       cat("\\begin{column}{0.4\\textwidth}")
       cat("\\vspace*{-6cm}")
       cat("\\hspace*{-0.5cm}")
-      cat("\\includegraphics[scale=.3]{",paste0('plots/',currency,'_placeSharePlot.jpg'),"}")
+      cat("\\includegraphics[scale=.3]{",paste0('plots/',currency,'_placeSharePlot.jpg'),"}",sep = "")
       cat("\\end{column}")
       cat("\\end{columns}")
    }
