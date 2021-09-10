@@ -36,7 +36,7 @@
         [
             "@semantic-release/github", {
                 "assets": [
-                    { "path": "files/example.pdf", "label": "Example Report" }
+                    { "path": "tests/example.pdf", "label": "Example Report" }
                 ]
             }
         ],
