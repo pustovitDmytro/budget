@@ -1,3 +1,16 @@
+## [1.4.2](https://github.com/pustovitDmytro/budget/compare/v1.4.1...v1.4.2) (2021-09-10)
+
+
+### Chore
+
+* change actions job name ([0d608ce](https://github.com/pustovitDmytro/budget/commit/0d608ce0bfbc8aeb95138bd301d8f40cc341421a))
+* delete .tex report ([65a9133](https://github.com/pustovitDmytro/budget/commit/65a91338258b6b476c2da8b222c96ccae6299421))
+* Test Docker image on ci (closes #4) ([eb041a9](https://github.com/pustovitDmytro/budget/commit/eb041a9eee916d237d18c8540bd16efeb4f169f4)), closes [#4](https://github.com/pustovitDmytro/budget/issues/4)
+
+### Docs
+
+* Update Docker Hub Description on update #4 ([c4e3699](https://github.com/pustovitDmytro/budget/commit/c4e36994eb08b58e06b30d8621909625229c9f37)), closes [#4](https://github.com/pustovitDmytro/budget/issues/4)
+
 ## [1.4.1](https://github.com/pustovitDmytro/budget/compare/v1.4.0...v1.4.1) (2021-09-07)
 
 
