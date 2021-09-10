@@ -1,3 +1,11 @@
+## [1.4.3](https://github.com/pustovitDmytro/budget/compare/v1.4.2...v1.4.3) (2021-09-10)
+
+
+### Fix
+
+* fixes DOCKERHUB_REPOSITORY in peter-evans/dockerhub-description ([2a18d71](https://github.com/pustovitDmytro/budget/commit/2a18d71b8c85d5c8d11f0515ada3f34752b26620))
+* fixes path in semantic-release/github ([1f842df](https://github.com/pustovitDmytro/budget/commit/1f842df82585e0b820c30be6e40a348dbe847c24))
+
 ## [1.4.2](https://github.com/pustovitDmytro/budget/compare/v1.4.1...v1.4.2) (2021-09-10)
 
 
