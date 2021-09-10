@@ -42,4 +42,4 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_REGISTRY_USER }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-          DOCKERHUB_REPOSITORY: peterevans/dockerhub-description
+          DOCKERHUB_REPOSITORY: pustovitdmytro/budget
