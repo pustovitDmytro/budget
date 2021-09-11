@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/pustovitDmytro/budget/compare/v1.4.3...v1.4.4) (2021-09-11)
+
+
+### Docs
+
+* adds dockerhub-description ([4abe9ae](https://github.com/pustovitDmytro/budget/commit/4abe9aedb4f1d124e29ff82ff5a17689ee6ecd26))
+
 ## [1.4.3](https://github.com/pustovitDmytro/budget/compare/v1.4.2...v1.4.3) (2021-09-10)
 
 
