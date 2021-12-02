@@ -336,7 +336,7 @@ uahRatePlot <- function (uah_rates, currency){
   hold<-hold_total[-c(1), currency]
   
   ylim.prim <- c(first(na.omit(line)), last(na.omit(line)))
-  ylim.sec <- c(first(na.omit(hold)), last(na.omit(hold)))
+  ylim.sec <- c(0, last(na.omit(hold)))
   
   b <- diff(ylim.prim)/diff(ylim.sec)
   a <- ylim.prim[1] - b*ylim.sec[1]
