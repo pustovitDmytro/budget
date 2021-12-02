@@ -1,3 +1,10 @@
+## [1.4.5](https://github.com/pustovitDmytro/budget/compare/v1.4.4...v1.4.5) (2021-09-11)
+
+
+### Docs
+
+* push example.pdf to git ([a721bf8](https://github.com/pustovitDmytro/budget/commit/a721bf8e1fe6d3b09b5852ef84ee383c8f600377))
+
 ## [1.4.4](https://github.com/pustovitDmytro/budget/compare/v1.4.3...v1.4.4) (2021-09-11)
 
 
