@@ -50,14 +50,36 @@ flowsTotalShares(shareDf)
 
 ## Expenses share
 
-```{r, echo=F}
+```{r, echo=F, warning=FALSE}
 flowsTypeShare(shareDf, T)
+```
+
+## Expenses Distribution
+```{r, echo=F, warning=FALSE}
+flowsDistributionPlot(uah_flw, T)
+```
+
+## Expenses Dynamics
+
+```{r, echo=F, warning=FALSE}
+expencesDynamicsPlot()
 ```
 
 ## Income share
 
-```{r, echo=F}
+```{r, echo=F, warning=FALSE}
 flowsTypeShare(shareDf)
+```
+
+## Income Distribution
+```{r, echo=F, warning=FALSE}
+flowsDistributionPlot(uah_flw, F)
+```
+
+## Income Dynamics
+
+```{r, echo=F, warning=FALSE}
+incomeDynamicsPlot()
 ```
 
 ```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}

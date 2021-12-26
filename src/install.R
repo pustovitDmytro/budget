@@ -13,7 +13,8 @@ packages <- c(
   "forecast",
   "ggplot2",
   "cowplot",
-  "ggrepel"
+  "ggrepel",
+  "tidyquant"
 )
 
 ipak(packages)

@@ -21,6 +21,38 @@ flowAbsDynamicsPlot <- function(data, column){
     p
 }
 
+expencesDynamicsPlot <- function(){
+  smooth_periods = 4
+  ma<-TTR::WMA(uah_flw$Expenses, n=smooth_periods, wts=(1:smooth_periods)^2)
+  bollinger_bands<-as.data.frame(TTR::BBands(uah_flw$Expenses,n=smooth_periods, sd=1))
+  bollinger_bands$dn<-ifelse(bollinger_bands$dn>0,bollinger_bands$dn,0)
+  final_ticks = c(last(bollinger_bands$dn), last(bollinger_bands$up), last(ma))
+  
+  ggplot(uah_flw, aes(y=Expenses, x=flw_x_ace, group = 1)) +
+    geom_ribbon(aes(ymin=bollinger_bands$dn,ymax=bollinger_bands$up), fill="#FEE3EC", alpha=0.5, color = "#F9C5D5")+
+    geom_line(aes(y=ma), color = "#F999B7") +
+    geom_bar(stat = "identity", color="#9A0680", fill="#79018C", alpha=0.1, width=0.75)+
+    geom_text(aes(label=asKLabel(Expenses)), vjust=2, size=2.2, color="#9A0680")+
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(),  legend.position = "none", axis.text.y.right = element_text(color = "#F2789F"))+
+    scale_y_continuous(labels=asKLabel, sec.axis = sec_axis(~., breaks = final_ticks, labels = asKLabel(final_ticks)))
+}
+
+incomeDynamicsPlot <- function(){
+  smooth_periods = 4
+  ma<-TTR::WMA(uah_flw$Income, n=smooth_periods, wts=(1:smooth_periods)^2)
+  bollinger_bands<-as.data.frame(TTR::BBands(uah_flw$Income,n=smooth_periods, sd=1))
+  bollinger_bands$dn<-ifelse(bollinger_bands$dn>0,bollinger_bands$dn,0)
+  final_ticks = c(last(bollinger_bands$dn), last(bollinger_bands$up), last(ma))
+  
+  ggplot(uah_flw, aes(y=Income, x=flw_x_ace, group = 1)) +
+    geom_ribbon(aes(ymin=bollinger_bands$dn,ymax=bollinger_bands$up), fill="#B1D0E0", alpha=0.25, color = "#406882")+
+    geom_line(aes(y=ma), color = "#1A374D") +
+    geom_bar(stat = "identity", color="#064635", fill="#519259", alpha=0.1, width=0.75)+
+    geom_text(aes(label=asKLabel(Income)), vjust=2, size=2.2, color="#064635")+
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(),  legend.position = "none", axis.text.y.right = element_text(color = "#406882"))+
+    scale_y_continuous(labels=asKLabel, sec.axis = sec_axis(~., breaks = final_ticks, labels = asKLabel(final_ticks)))
+}
+
 flowsTotalShares <- function (df){
   inc_palete<-c('#1fab89','#62d2a2', '#d7fbe8')
   exp_palete<-c('#ff4646', '#ff8585', '#fff5c0')
@@ -74,6 +106,19 @@ flowsTypeShare<-function(dat, expenses=F){
     draw_plot(other, x = .5, y = 0.1, width = .45, height = .5)
 }
 
+flowsDistributionPlot<-function(uah_flw, expenses=T){
+  df<-uah_flw %>% gather(type, value, all_of(FLOWS))
+  sign=ifelse(expenses, -1, 1)
+  filtered<-df %>% filter(value*sign>0)
+  ylim = quantile(filtered$value, c(0.05, 0.95))
+  ggplot(data=filtered, aes(x=type, y=value, fill=type, colour=type)) +
+    geom_boxplot(outlier.shape = NA, alpha=0.25) +
+    geom_jitter(size=0.4) +
+    scale_y_continuous(labels=asKLabel) +
+    coord_flip(ylim = ylim*1.5)+
+    theme(plot.title = element_text(hjust = 0.5), legend.position = "none",axis.title.x=element_blank(),axis.title.y=element_blank()) 
+}
+
 flowRelDynamicsPlot <- function(data, column){
   value<-data[,column]
   total<-ifelse(value<0, data$Expenses, data$Income)
@@ -100,7 +145,6 @@ marginDynamicsPlot <- function(uah){
 }
 
 flowsTotalsPlot <- function(uah){
-  
   totals = data.frame(
     label=c(paste0(last(row.names(uah)),":\n"), 'Av:', 'Tot:'),
     margin=c(last(uah$gross_margin), mean(uah$gross_margin, na.rm=T), sum(uah$Profit)/sum(uah$Income)),

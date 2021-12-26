@@ -1,3 +1,5 @@
+source("../src/lib.R")
+
 flowsTotalsPlot(uah_flw)
 marginDynamicsPlot(uah_flw)
 flowsAbsPlot(uah_flw)
@@ -22,3 +24,5 @@ uahRatePlot(uah_rates, "USD")
 currencyHoldingsPlot(hold_total, "GLD", "currencyDynamics")
 currencyHoldingsPlot(hold_total, "GLD", "currencyDiffAbs")
 currencyHoldingsPlot(hold_total, "GLD", "currencyDiffRel")
+
+uahRatePlot(uah_rates, "EUR")

@@ -4,6 +4,8 @@ library(forecast)
 library(ggplot2)
 library(cowplot)
 library(ggrepel)
+library(tidyr)
+
 Sys.setlocale("LC_TIME", "en_US.UTF-8")
 source("lib.R")
 source("load_data.R")
