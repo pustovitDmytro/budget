@@ -14,7 +14,7 @@ packages <- c(
   "ggplot2",
   "cowplot",
   "ggrepel",
-  "tidyquant"
+  "tidyr"
 )
 
 ipak(packages)
