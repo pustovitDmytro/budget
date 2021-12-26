@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/pustovitDmytro/budget/compare/v1.4.6...v1.5.0) (2021-12-26)
+
+
+### New
+
+* adds general dynamics plot ([fb923fe](https://github.com/pustovitDmytro/budget/commit/fb923fe03b5e755c93eb7286af9674b9739a19c0))
+
 ## [1.4.6](https://github.com/pustovitDmytro/budget/compare/v1.4.5...v1.4.6) (2021-12-02)
 
 
