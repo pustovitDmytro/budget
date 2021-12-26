@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/pustovitDmytro/budget/compare/v1.4.5...v1.4.6) (2021-12-02)
+
+
+### Fix
+
+* normalize by zero level in uahRatePlot ([8ab1621](https://github.com/pustovitDmytro/budget/commit/8ab16215b3bec13fc23797b1e6584f5cd5b09384))
+
 ## [1.4.5](https://github.com/pustovitDmytro/budget/compare/v1.4.4...v1.4.5) (2021-09-11)
 
 

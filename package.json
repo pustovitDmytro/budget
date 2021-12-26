@@ -1,6 +1,6 @@
 {
   "name": "budget",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Monthly budget reports",
   "main": "index.js",
   "directories": {
