@@ -14,7 +14,8 @@ flowAbsDynamicsPlot <- function(data, column){
     geom_line(data = spline_int, aes(x = x, y = y), size=.2, alpha=0.5, linetype = "dotted") + 
     geom_line(aes(x = flw_x_ace, y = raw, colour=raw>0), size=.5) + 
     geom_text(label=asKLabel(raw, ""), vjust=2, size=2.5)+ boolScale +
-    theme(plot.title = element_text(hjust = 0.5), legend.position = "none",axis.title.x=element_blank(),axis.title.y=element_blank()) 
+    theme(plot.title = element_text(hjust = 0.5), legend.position = "none",axis.title.x=element_blank(),axis.title.y=element_blank())+
+    scale_y_continuous(labels=asKLabel)
     if(exists("smoo")){
       p<-p+geom_line(data = as.data.frame(prediction), aes(x = x, y = y), linetype = "dashed")+stat_smooth(method = glm)
     }

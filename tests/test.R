@@ -6,7 +6,7 @@ flowsAbsPlot(uah_flw)
 flowsTotalShares(shareDf)
 flowsTypeShare(shareDf, T)
 flowsTypeShare(shareDf)
-flowAbsDynamicsPlot(flows_dat, "deposit eur")
+flowAbsDynamicsPlot(flows_dat, "Eat")
 flowRelDynamicsPlot(uah_flw, "deposit usd")
 
 
