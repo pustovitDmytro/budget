@@ -119,3 +119,9 @@ for(ht in holdingTypes){
   cols<-as.vector(which(apply(hold_meta, 2, function(x) as.character(x[2])==ht)))
   hold_total[, ht]<-apply(hold_uah[,cols,drop=F], 1, function(x){sum(x, na.rm = T)})
 }
+
+# Investments
+investments<-as.data.frame(t(head(raw_flows,2)))
+colnames(investments)<-as.character(unlist(investments[1,]))
+investments<-tail(investments, -1)
+investments<-investments %>% filter(Source!='NULL')

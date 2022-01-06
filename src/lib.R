@@ -394,6 +394,39 @@ uahRatePlot <- function (uah_rates, currency){
     scale_y_continuous(labels=asKLabel, sec.axis = sec_axis(~ (. - a)/b, labels=asKLabel))
 }
 
+investmentsYieldPlot <- function (flowName){
+  flowName='NPF Dynasty'
+  currency=as.character(investments[flowName, "Currency"])
+  srcName=as.character(investments[flowName, "Source"])
+
+  df<-as.data.frame(flows_dat[flowName])
+  colnames(df)<-c("MonthReturnAmount")
+  df$Holding<-holdings[-nrow(holdings),srcName]
+  df$MPR<-df$MonthReturnAmount/df$Holding
+  df$APR<-(1+df$MPR)^12-1
+  
+  col=currColor[currency]
+  holdCol=alpha(currSecColor[currency], 0.5)
+  
+  ylim.prim <- c(0, max(na.omit(df$APR)))
+  ylim.sec <- c(0, max(na.omit(df$Holding)))
+  
+  b <- diff(ylim.prim)/diff(ylim.sec)
+  a <- ylim.prim[1] - b*ylim.sec[1]
+  
+  df$PlotMonth<-a+b*df$MonthReturnAmount
+  
+  ggplot(df, aes(x=flw_x_ace))+
+    geom_point(size=3, aes(colour=MPR>0, y=APR)) +
+    geom_segment(aes(xend=flw_x_ace, y=0, yend=APR, colour=MPR>0)) +
+    geom_text(aes(vjust=ifelse(MPR>0, -1.5, 2), y=APR, label=asPercentLabel(APR)), size=3)+
+    geom_bar(aes(y=df$PlotMonth), colour=alpha(col, .25), alpha=0, stat="identity") +
+    boolScale +
+    geom_area(aes(y=a+Holding*b), fill = holdCol, colour=col, group = 1, position = 'identity',alpha=0.3, size=0.5)+
+    scale_y_continuous(labels=asPercentLabel, sec.axis = sec_axis(~ (. - a)/b, labels=asKLabel))+
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position = "none")
+}
+
 currencyDynamicsPlot<-function(hold_total){
   time <- rep(hold_total$Names,each=length(currencies))
   group <- rep(currencies,times=nrow(hold_total))

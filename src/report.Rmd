@@ -209,6 +209,15 @@ for(holding in HOLDINGS){
 }
 ```
 
+# Investments
+
+```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
+for(investmentType in rownames(investments)){
+   cat("\n\n##", investmentType, " Yield \n")
+   print(investmentsYieldPlot(investmentType))
+}
+```
+
 # Errors
 
 ## Profit calculations
