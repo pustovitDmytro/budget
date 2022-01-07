@@ -395,7 +395,6 @@ uahRatePlot <- function (uah_rates, currency){
 }
 
 investmentsYieldPlot <- function (flowName){
-  flowName='NPF Dynasty'
   currency=as.character(investments[flowName, "Currency"])
   srcName=as.character(investments[flowName, "Source"])
 
@@ -637,4 +636,16 @@ darken <- function(color, factor=1.4){
   col <- col/factor
   col <- rgb(t(col), maxColorValue=255)
   col
+}
+
+appendixHoldingsYearTable <- function(fullyear){
+  shortYear<-substr(fullyear, 3, 4)
+  subset<-as.data.frame(t(holdings[grep(pattern = shortYear, x = rownames(holdings)),]))
+  subset[rowSums(subset,na.rm = T)>0,]
+}
+
+appendixFlowsYearTable <- function(fullyear){
+  shortYear<-substr(fullyear, 3, 4)
+  subset<-as.data.frame(t(flows_dat[grep(pattern = shortYear, x = rownames(flows_dat)),]))
+  subset[rowSums(subset, na.rm = T)!=0,, drop = FALSE]
 }

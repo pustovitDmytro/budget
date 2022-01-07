@@ -125,3 +125,6 @@ investments<-as.data.frame(t(head(raw_flows,2)))
 colnames(investments)<-as.character(unlist(investments[1,]))
 investments<-tail(investments, -1)
 investments<-investments %>% filter(Source!='NULL')
+
+# APPENDIX
+STORED_YEARS<-unique(format(as.POSIXct(unlist(tail(raw_holdings$Name, n=-3)), origin='1970-01-01'), '%Y'))
