@@ -171,19 +171,19 @@ print(xtable(diversificationTable(placeConsolidation, pretty=T)), scalebox='0.5'
 ```
 :::
 ::: {.column width="80%"}
-```{r, echo=FALSE, results='asis'}
+```{r, echo=FALSE, warning=FALSE, results='asis'}
 diversificationPiePlot(t(tail(placeConsolidation, n=1)), palette=placesScale)
 ```
 :::
 ::::::
 
 ## Place performance
-```{r, echo=FALSE, results='asis'}
+```{r, echo=FALSE, warning=FALSE, results='asis'}
 diversificationPerformancePlot(diversificationTable(placeConsolidation))
 ```
 
 ## Place consolidation
-```{r, echo=FALSE, results='asis'}
+```{r, echo=FALSE, warning=FALSE, results='asis'}
 diversificationBarPlot(t(tail(placeConsolidation, n=1)), palette=placesScale)
 ```
 
