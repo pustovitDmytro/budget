@@ -10,12 +10,12 @@ import random
 BANKS = [ "PrivatBank", 'monobank', "oschadbank", "Raiffeisen Bank Aval", "Crédit Agricole", "Pumb", "Ukr Exim", "Alfa"]
 BANK_HOLDINGS = ["Current Account", "Savings Account", "Short Deposit", "Long Deposit"] 
 BANK_CURRENCIES = ['UAH', 'USD', 'EUR', 'CHF']
-BANK_CURRENCIES_WEIGHTS = (10, 10, 5, 2)
+BANK_CURRENCIES_WEIGHTS = (10, 8, 5, 2)
 UNIQUE_HOLDINGS = {
   "Cash": { "CURRENCIES": ["UAH", "USD"], "PLACES": ["Cash"] },
   "Domestic Bonds": { "CURRENCIES": ["UAH", "EUR"], "PLACES": ["Freedom Finance", "Interactive brokers", "PrivatBank"] },
-  "Shares": { "CURRENCIES": [ "USD" ], "PLACES": [ "Interactive brokers" ] },
-  "Cryptocurrency": { "CURRENCIES": ["BTC"], "PLACES": ["Interactive brokers"] },
+  "Shares": { "CURRENCIES": [ "USD" ], "PLACES": [ "Interactive brokers", "Freedom Finance" ] },
+  "Cryptocurrency": { "CURRENCIES": ["BTC"], "PLACES": ["Interactive brokers", "Cash"] },
   "Bank Metals": { "CURRENCIES": ['GLD'], "PLACES": ["PrivatBank", 'Crédit Agricole', "Interactive brokers"] }
 }
 
@@ -29,8 +29,17 @@ CURRENCY_RATIO = {
 	'USD': 2, 
 	'EUR': 1,
 	'CHF': 0.2,
-	'GLD': .5*1/1000,
+	'GLD': .5*1/1500,
 	'BTC': .5*1/30000,
+}
+
+CURRENCY_APR = {
+	'UAH': 3,
+	'USD': 2,
+	'EUR': 1,
+	'CHF': 0.5,
+	'GLD': 0.01,
+	'BTC': 0.01
 }
 
 CURRENCIES = CURRENCY_RATIO.keys()
@@ -69,7 +78,8 @@ class Generator():
 	def generate_diff(self, prev):
 		diff = {}
 		for currency in CURRENCIES:
-			diff[currency] = prev[currency] * random.gauss(self.delta, 0.1)
+			apr = CURRENCY_APR[currency]
+			diff[currency] = prev[currency] * random.gauss(self.delta*apr/12, 0.1)
 		return diff
 
 	def seed_abs(self):
