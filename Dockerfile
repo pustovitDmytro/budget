@@ -1,4 +1,4 @@
-FROM pustovitdmytro/budget-base:1.1.0
+FROM pustovitdmytro/budget-base:1.0.1
 
 WORKDIR /app
 
