@@ -317,9 +317,13 @@ asKLabel <-function(value, flags="", dropZero=F, min=-Inf, digits=2){
     is.na(value) | dropZero & value==0 | value<min, 
     NA, 
     ifelse(
-      abs(value)>=1000,
-      paste0(formatC(value/1000, digits = digits, format = "f", drop0trailing=T,flag=flags),'k'),
-      formatC(value, digits = digits, format = "f", drop0trailing=T,flag=flags) 
+      abs(value)>=1000*1000,
+      paste0(formatC(value/(1000*1000), digits = 3, format = "f", drop0trailing=T,flag=flags),'M'),
+      ifelse(
+        abs(value)>=1000,
+        paste0(formatC(value/1000, digits = digits, format = "f", drop0trailing=T,flag=flags),'k'),
+        formatC(value, digits = digits, format = "f", drop0trailing=T,flag=flags) 
+      ) 
     )
   )
 }
@@ -423,6 +427,43 @@ investmentsYieldPlot <- function (flowName){
     boolScale +
     geom_area(aes(y=a+Holding*b), fill = holdCol, colour=col, group = 1, position = 'identity',alpha=0.3, size=0.5)+
     scale_y_continuous(labels=asPercentLabel, sec.axis = sec_axis(~ (. - a)/b, labels=asKLabel))+
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position = "none")
+}
+
+investmentsHoldingsPlot <- function (){
+  ylim.prim <- c(0, max(na.omit(investments_uah$ReturnRate)))
+  ylim.sec <- c(0, max(na.omit(investments_uah$Capital)))
+  
+  b <- diff(ylim.prim)/diff(ylim.sec)
+  a <- ylim.prim[1] - b*ylim.sec[1]
+  
+  ggplot(investments_uah, aes(x=factor(row.names(investments_uah), levels = row.names(investments_uah))))+
+    geom_point(size=2, aes(colour=Return>0, y=ReturnRate)) +
+    geom_segment(aes(xend=rownames(investments_uah), y=0, yend=ReturnRate, colour=Return>0)) +
+    geom_text(aes(vjust=ifelse(ReturnRate>0, -0.7, 1.2), y=ReturnRate, label=asPercentLabel(ReturnRate)), size=3)+
+    geom_bar(aes(y=a+investments_uah$Investments*b),colour=alpha('#AA96DA', 0.75),fill=alpha('#AA96DA', 0.25), stat="identity") +
+    boolScale +
+    geom_area(aes(y=a+investments_uah$Capital*b), group = 1, fill=alpha('#A8D8EA', 0.25), colour=alpha('#A8D8EA', 0.75), position ='identity', alpha=0.3, size=0.5)+
+    scale_y_continuous(labels=asPercentLabel, sec.axis = sec_axis(~ (. - a)/b, labels=asKLabel))+
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position = "none")
+}
+
+investmentsImpactPlot <- function (){
+  ylim.prim <- c(0, max(investments_uah$ExpensesRate))
+  ylim.sec <- c(0, max(na.omit(investments_uah$Capital)))
+  
+  b <- diff(ylim.prim)/diff(ylim.sec)
+  a <- ylim.prim[1] - b*ylim.sec[1]
+  
+  ggplot(investments_uah, aes(x=factor(row.names(investments_uah), levels = row.names(investments_uah))))+
+    geom_line(aes(y=IncomeRate, colour=T), group=1) +
+    geom_line(aes(y=ExpensesRate, colour=F), group=1) +
+    geom_text(aes(vjust=ifelse(ExpensesRate>0, -0.7, 1.1), y=ExpensesRate, label=asPercentLabel(ExpensesRate), colour=F), hjust=1, size=3)+
+    geom_text(aes(vjust=ifelse(IncomeRate>0, -0.5, .5), y=IncomeRate, label=asPercentLabel(IncomeRate), colour=T), hjust=-.2, size=3)+
+    geom_bar(aes(y=a+investments_uah$Investments*b),colour=alpha('#AA96DA', 0.75),fill=alpha('#AA96DA', 0.25), stat="identity") +
+    geom_area(aes(y=a+investments_uah$Capital*b), group = 1, fill=alpha('#A8D8EA', 0.25), colour=alpha('#A8D8EA', 0.75), position ='identity', alpha=0.3, size=0.5)+
+    scale_y_continuous(labels=asPercentLabel, sec.axis = sec_axis(~ (. - a)/b, labels=asKLabel))+
+    boolScale+
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position = "none")
 }
 
@@ -638,14 +679,17 @@ darken <- function(color, factor=1.4){
   col
 }
 
-appendixHoldingsYearTable <- function(fullyear){
+appendixYearTable <- function(fullyear, table){
   shortYear<-substr(fullyear, 3, 4)
-  subset<-as.data.frame(t(holdings[grep(pattern = shortYear, x = rownames(holdings)),]))
-  subset[rowSums(subset,na.rm = T)>0,]
-}
-
-appendixFlowsYearTable <- function(fullyear){
-  shortYear<-substr(fullyear, 3, 4)
-  subset<-as.data.frame(t(flows_dat[grep(pattern = shortYear, x = rownames(flows_dat)),]))
+  subset<-as.data.frame(t(table[grep(pattern = shortYear, x = rownames(table)),]))
   subset[rowSums(subset, na.rm = T)!=0,, drop = FALSE]
 }
+
+safeYearReportTable <- function(year, history_table, title){
+  table<-appendixYearTable(year, history_table)
+  if(!is.null(dim(table))){
+    cat("\n\n##", year, title, "\n")
+    print(xtable(table), scalebox='0.35', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+  }
+}
+

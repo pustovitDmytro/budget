@@ -10,6 +10,8 @@ Sys.setlocale("LC_TIME", "en_US.UTF-8")
 source("lib.R")
 source("load_data.R")
 
+HISTORY_PERIODS=25
+
 boolC <- c("TRUE"="#035e3c", "FALSE"="#a50000")
 boolScale <- scale_colour_manual(name="boolean", values=boolC)
 currencies<-raw_types$Currencies[!is.na(raw_types$Currencies)]
@@ -49,7 +51,6 @@ uah_flw$margin_diff_label <- ifelse(is.nan(uah_flw$margin_diff), "", paste0(form
 uah_flw$Income_label <- ifelse(uah_flw$Income, paste0(formatC(uah_flw$Income/1000, digits = 1, format = "f", drop0trailing=T),'k'), NA)
 uah_flw$Profit_label <- ifelse(uah_flw$Profit, paste0(formatC(uah_flw$Profit/1000, digits = 1, format = "f", drop0trailing=T),'k'), NA)
 uah_flw$expences_label <- ifelse(uah_flw$Expenses>0, paste0(formatC(-uah_flw$Expenses/1000, digits = 1, format = "f", drop0trailing=T),'k'), NA)
-
 
 shareDf<-as.data.frame(t(tail(uah_flows,1)))
 colnames(shareDf)<-c("value")
@@ -126,5 +127,57 @@ colnames(investments)<-as.character(unlist(investments[1,]))
 investments<-tail(investments, -1)
 investments<-investments %>% filter(Source!='NULL')
 
+investments_uah<-as.data.frame(tail(hold_total["abs"],n=-1))
+colnames(investments_uah)<-c("Capital")
+investments_uah$Income<-uah_flw[,"Income"]
+investments_uah$Expenses<-uah_flw[,"Expenses"]
+investments_uah$Investments<-0
+investments_uah$Return<-0
+investments_uah$IncomeSources<-0
+investments_uah$ProfitableHoldings<-0
+
+for(investmentType in rownames(investments)){
+  holdName=as.character(investments[investmentType, "Source"])
+  invholding<-tail(hold_uah[,holdName], n=-1)
+  invholding[is.na(invholding)] <- 0
+  investments_uah$Investments<-investments_uah$Investments+invholding
+  invflow<-uah_flw[,investmentType]
+  invflow[is.na(invflow)] <- 0
+  investments_uah$Return<-investments_uah$Return+invflow
+}
+for(investmentType in rownames(investments)){
+  holdName=as.character(investments[investmentType, "Source"])
+  invholding<-tail(hold_uah[,holdName], n=-1)
+  invholding[is.na(invholding)] <- 0
+  holdShare<-ifelse(invholding/abs(investments_uah$Investments)>0.01, 1, 0)
+  investments_uah$ProfitableHoldings<-investments_uah$ProfitableHoldings+holdShare
+  invflow<-uah_flw[,investmentType]
+  invflow[is.na(invflow)] <- 0
+  flowShare<-ifelse(invflow/abs(investments_uah$Return)>0.01, 1, 0)
+  investments_uah$IncomeSources<-investments_uah$IncomeSources+flowShare
+}
+
+investments_uah$InvestmentsRate<-investments_uah$Investments/investments_uah$Capital
+investments_uah$ReturnRate<-12*investments_uah$Return/investments_uah$Investments
+investments_uah$IncomeRate<-investments_uah$Return/investments_uah$Income
+investments_uah$ExpensesRate<-investments_uah$Return/investments_uah$Expenses
+
 # APPENDIX
 STORED_YEARS<-unique(format(as.POSIXct(unlist(tail(raw_holdings$Name, n=-3)), origin='1970-01-01'), '%Y'))
+
+holdings_history<-holdings
+flows_history<-flows_dat
+investments_history<-investments_uah
+
+uah_flows<-tail(uah_flows, n=HISTORY_PERIODS-1)
+uah_flw<-tail(uah_flw, n=HISTORY_PERIODS-1)
+flw_x_ace <-tail(flw_x_ace, n=HISTORY_PERIODS-1)
+flows_dat<-tail(flows_dat, n=HISTORY_PERIODS-1)
+
+uah_rates<-tail(uah_rates, n=HISTORY_PERIODS)
+placeConsolidation<-tail(placeConsolidation, n=HISTORY_PERIODS)
+investments_uah<-tail(investments_uah, n=HISTORY_PERIODS)
+holdings<-tail(holdings, n=HISTORY_PERIODS)
+hold_uah<-tail(hold_uah, n=HISTORY_PERIODS)
+hold_total<-tail(hold_total, n=HISTORY_PERIODS)
+

@@ -18,41 +18,18 @@ bold <- function(x) {paste('{\\textbf{',x,'}}', sep ='')}
 title: "`r format(LAST_DATE, '%B %Y')`"
 ---
 
-
-## Place diversification
-
-:::::: {.columns}
-::: {.column width="50%"}
-```{r, echo=FALSE, results='asis'}
-print(xtable(diversificationTable(placeConsolidation, pretty=T)), scalebox='0.5', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
-```
-:::
-::: {.column width="80%"}
-```{r, echo=FALSE, results='asis'}
-diversificationPiePlot(t(tail(placeConsolidation, n=1)), palette=placesScale)
-```
-:::
-::::::
-
-## Place performance
-```{r, echo=FALSE, results='asis'}
-diversificationPerformancePlot(diversificationTable(placeConsolidation))
-```
-
-## Place consolidation
-```{r, echo=FALSE, results='asis'}
-diversificationBarPlot(t(tail(placeConsolidation, n=1)), palette=placesScale)
-```
-
-## Portfolio by Holding Type 
-```{r, echo=F, warning=FALSE}
-holdingTypesPortfolioPlot(hold_total)
-```
+# Appendix
 
 ```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
-for(holding in HOLDINGS){
-   cat("\n\n##", holding, " dynamics \n")
-   print(holdAbsDynamicsPlot(holdings,hold_meta,hold_uah, holding))
+for(year in STORED_YEARS){
+   table<-appendixHoldingsYearTable(year)
+   if(nrow(table)>0){
+   cat("\n\n##", year, " Holdings\n")
+   print(xtable(table), scalebox='0.35', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+   }
+   #cat("\n\n##", year, " Flows\n")
+   #print(xtable(appendixFlowsYearTable(year)), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+   #cat("\n\n##", year, " Investments\n")
+   #print(xtable(appendixInvestmentsYearTable(year)), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
 }
 ```
-

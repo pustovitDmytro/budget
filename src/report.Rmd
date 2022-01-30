@@ -218,6 +218,16 @@ for(investmentType in rownames(investments)){
 }
 ```
 
+## Investments Summary 
+```{r, echo=F, warning=FALSE}
+investmentsHoldingsPlot()
+```
+
+## Investments Impact 
+```{r, echo=F, warning=FALSE}
+investmentsImpactPlot()
+```
+
 # Errors
 
 ## Profit calculations
@@ -242,11 +252,10 @@ profitErrorRel(hold_total)
 
 # Appendix
 
-```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
+```{r, echo=F, results = "asis", message=T, warning=T}
 for(year in STORED_YEARS){
-   cat("\n\n##", year, " Holdings\n")
-   print(xtable(appendixHoldingsYearTable(year)), scalebox='0.35', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
-   cat("\n\n##", year, " Flows\n")
-   print(xtable(appendixFlowsYearTable(year)), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+   safeYearReportTable(year, holdings_history, "Holdings")
+   safeYearReportTable(year, flows_history, "Flows")
+   safeYearReportTable(year, investments_history, "Investments")
 }
 ```
