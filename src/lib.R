@@ -308,7 +308,7 @@ asPercentLabel <- function (value, flags="", dropZero=F, min=-Inf){
   ifelse(
     is.na(value) | dropZero & value==0 | value<min, 
     NA,
-    paste0(formatC(value*100, digits = 1, format = "f", drop0trailing=T,flag=flags),'%')
+    paste0(formatC(value*100, digits = 2, format = "f", drop0trailing=T,flag=flags),'%')
   )
 }
 
