@@ -7,7 +7,8 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-source("../lib/lib.R")
+#source("../src/main.R")
+source("main.R", local = knitr::knit_global())
 library(knitr)
 opts_chunk$set(echo = FALSE, fig.width = 15, fig.height = 12)
 library(xtable)
@@ -21,15 +22,37 @@ title: "`r format(LAST_DATE, '%B %Y')`"
 # Appendix
 
 ```{r, echo=F, results = "asis", message=FALSE, warning=FALSE}
-for(year in STORED_YEARS){
-   table<-appendixHoldingsYearTable(year)
-   if(nrow(table)>0){
-   cat("\n\n##", year, " Holdings\n")
-   print(xtable(table), scalebox='0.35', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+for(currency in currencies){
+   if(sum(tail(hold_total[,currency], n=3))>0){
+      
+      cat("\n\n##", currency, " dynamics \n")
+      print(currencyHoldingsPlot(hold_total, currency, "currencyDynamics"))
+      
+      cat("\n\n##", currency, " growth \n")
+      print(currencyHoldingsPlot(hold_total, currency, "currencyDiffAbs"))
+      
+      cat("\n\n##", currency, " performance \n")
+      print(currencyHoldingsPlot(hold_total, currency, "currencyDiffRel"))
+      
+      cat("\n\n##", currency, " by place performance \n")
+      print(placeChangePlot(currency))
+      
+      jpeg(paste0('plots/',currency,'_placeSharePlot.jpg'), width = 520, height = 548)
+      print(placeSharePlot(currency))
+      dev.off()
+      
+      cat("\n\n##", currency, " share by place\n")
+      
+      cat("\\begin{columns}")
+      cat("\\begin{column}{0.6\\textwidth}")
+      print(xtable(getPlaceHistoryTable(currency)), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
+      cat("\\end{column}")
+      cat("\\begin{column}{0.4\\textwidth}")
+      cat("\\vspace*{-6cm}")
+      cat("\\hspace*{-0.5cm}")
+      cat("\\includegraphics[scale=.3]{",paste0('plots/',currency,'_placeSharePlot.jpg'),"}",sep = "")
+      cat("\\end{column}")
+      cat("\\end{columns}")
    }
-   #cat("\n\n##", year, " Flows\n")
-   #print(xtable(appendixFlowsYearTable(year)), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
-   #cat("\n\n##", year, " Investments\n")
-   #print(xtable(appendixInvestmentsYearTable(year)), scalebox='0.4', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
 }
 ```

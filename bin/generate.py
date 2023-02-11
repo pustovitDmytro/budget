@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 from abc import ABCMeta
-import re
-import os
 import csv
 from datetime import date,datetime
 import random

@@ -1,0 +1,25 @@
+---
+output:
+  beamer_presentation:
+    fig_crop: FALSE
+    toc: true
+    slide_level: 2
+---
+
+```{r setup, include=FALSE}
+#source("../src/main.R")
+source("main.R", local = knitr::knit_global())
+library(knitr)
+opts_chunk$set(echo = FALSE, fig.width = 15, fig.height = 12)
+library(xtable)
+bold <- function(x) {paste('{\\textbf{',x,'}}', sep ='')}
+```
+
+---
+title: |
+  ![](../.docs/logo.png){width=2in}  
+  `r format(LAST_DATE, '%B %Y')`
+---
+
+
+# Appendix
