@@ -38,6 +38,37 @@ expencesDynamicsPlot <- function(){
     scale_y_continuous(labels=asKLabel, sec.axis = sec_axis(~., breaks = final_ticks, labels = asKLabel(final_ticks)))
 }
 
+cpi <- function(){
+  smooth_periods = 4
+  ma<-TTR::WMA(uah_flw$Consumed, n=smooth_periods, wts=1:smooth_periods)
+  bollinger_bands<-as.data.frame(TTR::BBands(uah_flw$Consumed,n=smooth_periods, sd=1))
+  bollinger_bands$dn<-ifelse(bollinger_bands$dn>0,bollinger_bands$dn,0)
+  final_ticks = c(last(bollinger_bands$dn), last(bollinger_bands$up), last(ma))
+  consumedLineColor=alpha("#9A0680", 0.2)
+  consumedFillColor=alpha("#79018C", 0.05)
+  consumedStatsLineColor=alpha("#F9C5D5", 0.75)
+  consumedStatsFillColor=alpha("#FEE3EC", 0.25)
+  inflationColor='blue';
+  inflation = ma/lag(ma, n=12)-1
+  
+  ylim.prim <- c(0, max(na.omit(uah_flw$Consumed)))
+  ylim.sec <- c(min(na.omit(inflation)), max(na.omit(inflation)))
+  
+  b <- diff(ylim.prim)/diff(ylim.sec)
+  a <- ylim.prim[1] - b*ylim.sec[1]
+  
+  ggplot(uah_flw, aes(y=Consumed, x=flw_x_ace, group = 1)) +
+    geom_ribbon(aes(ymin=bollinger_bands$dn,ymax=bollinger_bands$up), fill=consumedStatsFillColor, color=consumedStatsLineColor)+
+    geom_line(aes(y=ma), color = consumedStatsLineColor) +
+    geom_line(aes(y=a+inflation*b), color=alpha(inflationColor, 0.5)) +
+    geom_line(aes(y=a), color=alpha(inflationColor, 0.25), linetype = "dashed") +
+    geom_text(aes(y=a+inflation*b, label=asPercentLabel(inflation)), vjust=-1, hjust=0.5, size=2, color=inflationColor) +
+    geom_bar(stat = "identity", color=consumedLineColor, fill=consumedFillColor, width=0.75)+
+    geom_text(aes(label=asKLabel(Consumed)), vjust=2, size=2.2, color=alpha(consumedLineColor, 0.25))+
+    theme(axis.title.x = element_blank(), axis.title.y = element_blank(),  legend.position = "none", axis.text.y.right = element_text(color = "#F2789F"))+
+    scale_y_continuous(labels=asKLabel, sec.axis = sec_axis(~., breaks = final_ticks, labels = asKLabel(final_ticks)))
+}
+
 incomeDynamicsPlot <- function(){
   smooth_periods = 4
   ma<-TTR::WMA(uah_flw$Income, n=smooth_periods, wts=(1:smooth_periods)^2)
@@ -232,9 +263,9 @@ profitErrorAbs<-function(hold_total){
 currencyErrors<-function(){
   ggplot(currency_summary, aes(x=rownames(currency_summary)))+
     geom_bar(aes(y=hold_diff*rate), stat = "identity", colour=alpha(errorSourceColors["Holdings"],0.8), fill=alpha(errorSourceColors["Holdings"], 0.3))+
-    geom_text(aes(y=hold_diff*rate, label=asKLabel(hold_diff), colour='Holdings'), vjust=1.5, hjust=-0.2, size=3) +
+    geom_text(aes(y=hold_diff*rate, label=asKLabel(hold_diff), colour='Holdings'), vjust=1.5, hjust=2, size=3) +
     geom_bar(aes(y=sum*rate), stat = "identity", colour=alpha(errorSourceColors["Flows"],0.8), fill=alpha(errorSourceColors["Flows"], 0.3))+
-    geom_text(aes(y=sum*rate, label=asKLabel(sum), colour='Flows'), vjust=-0.5, hjust=-0.2, size=3) +
+    geom_text(aes(y=sum*rate, label=asKLabel(sum), colour='Flows'), vjust=-0.5, hjust=-1, size=3) +
     scale_y_continuous(labels=asKLabel) +
       scale_colour_manual(name = '', guide = 'legend',values = errorSourceColors)+
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(1,1),  legend.justification=c(1,1), legend.direction='horizontal', legend.background = element_rect(fill="transparent"))
@@ -322,7 +353,11 @@ asKLabel <-function(value, flags="", dropZero=F, min=-Inf, digits=2){
       ifelse(
         abs(value)>=1000,
         paste0(formatC(value/1000, digits = digits, format = "f", drop0trailing=T,flag=flags),'k'),
-        formatC(value, digits = digits, format = "f", drop0trailing=T,flag=flags) 
+        ifelse(
+          abs(value)<=0.1 & abs(value)>1/(1000*1000),
+          paste0(formatC(value*1000, digits = digits, format = "f", drop0trailing=T,flag=flags),'m'),
+          formatC(value, digits = digits, format = "f", drop0trailing=T,flag=flags) 
+        )
       ) 
     )
   )
@@ -473,6 +508,7 @@ currencyDynamicsPlot<-function(hold_total){
   dd <- data.frame(time,group)
   dd$uah_value<-sapply(1:nrow(dd), function(i) hold_total[dd[i, "time"], paste0("uah_", dd[i, "group"])])
   dd$x<-rep(1:nrow(hold_total),each=length(currencies))
+  dd$Names<-time
   
   ggplot(dd, aes(x=x, y=uah_value, fill=group, colour=group)) + 
     geom_area(alpha=0.6 , size=0.5) + 
@@ -691,5 +727,9 @@ safeYearReportTable <- function(year, history_table, title){
     cat("\n\n##", year, title, "\n")
     print(xtable(table), scalebox='0.35', comment=FALSE, sanitize.colnames.function=bold, sanitize.rownames.function=bold)
   }
+}
+
+getTableScale<-function(base, cols){
+  (-0.075*cols+1.45)*base
 }
 

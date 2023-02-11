@@ -127,6 +127,8 @@ colnames(investments)<-as.character(unlist(investments[1,]))
 investments<-tail(investments, -1)
 investments<-investments %>% filter(Source!='NULL')
 
+uah_flw$Consumed<-apply(t(uah_flows %>% select(-c('charity', rownames(investments)))), 2, function(x) -sum(x[x < 0], na.rm = TRUE))
+
 investments_uah<-as.data.frame(tail(hold_total["abs"],n=-1))
 colnames(investments_uah)<-c("Capital")
 investments_uah$Income<-uah_flw[,"Income"]
@@ -180,4 +182,3 @@ investments_uah<-tail(investments_uah, n=HISTORY_PERIODS)
 holdings<-tail(holdings, n=HISTORY_PERIODS)
 hold_uah<-tail(hold_uah, n=HISTORY_PERIODS)
 hold_total<-tail(hold_total, n=HISTORY_PERIODS)
-
