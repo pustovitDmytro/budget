@@ -46,7 +46,7 @@ flowsAbsPlot(uah_flw)
 
 ## Flows share
 
-```{r, echo=F}
+```{r, echo=F, message=FALSE, warning=FALSE}
 flowsTotalShares(shareDf)
 ```
 
