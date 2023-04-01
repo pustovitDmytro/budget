@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-YEARS_ACCUM=34
-TARGET=21_000/3
-ACCUMULATED=20612.88 
-RATE=0.095
-INFLATION=0.1
+YEARS_ACCUM=60-27
+TARGET=23000/3
+ACCUMULATED=31273 
+RATE=0.11
+INFLATION=0.2
 YEARS_PAYOFF=20
 
 def sigma_sum(start, end, expression):
