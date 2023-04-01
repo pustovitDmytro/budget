@@ -271,6 +271,33 @@ currencyErrors<-function(){
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.position=c(1,1),  legend.justification=c(1,1), legend.direction='horizontal', legend.background = element_rect(fill="transparent"))
 }
 
+getPlaceHoldingStatsTable<-function(holdingType){
+  table = data.frame()
+  for(place in Places){
+    hold_colname=paste0(place,'_',holdingType)
+    isMatch = sum(hold_total[(nrow(hold_total)-2):nrow(hold_total),hold_colname], na.rm=T)>0
+    if(isMatch){
+      table[place,c("total")]<-c(hold_total[nrow(hold_total),hold_colname])
+    }
+  }
+  table$Names<-rownames(table)
+  table
+}
+
+getPlaceHoldingsHistoryTable<-function(holdingType){
+  table = data.frame(matrix(NA, nrow=nrow(hold_total), ncol = 0))
+  
+  for(place in Places){
+    hold_colname=paste0(place,'_',holdingType)
+    isMatch = sum(hold_total[(nrow(hold_total)-2):nrow(hold_total),hold_colname], na.rm=T)>0
+    if(isMatch){
+      table[, place] <- hold_total[, hold_colname]
+    }
+  }
+  rownames(table)<-rownames(hold_total)
+  table
+}
+
 getPlaceStatsTable<-function(currency){
   table = data.frame()
   for(place in Places){
@@ -310,12 +337,12 @@ placeChangePlot<-function(currency){
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(), legend.key.size = unit(0.8, 'cm'), legend.position=c(1, 0.5),  legend.justification=c(1,1), legend.direction='vertical', legend.background=element_rect(fill="transparent"))
 }
 
-placeSharePlot<-function(currency){
-  table <- getPlaceStatsTable(currency)
+placeSharePlot<-function(currency, tableFn=getPlaceStatsTable){
+  table <- tableFn(currency)
   
-  labels <- asPercentLabel(table$total/sum(table$total), dropZero=T, min=0.01)
-  avg <- mean(table$total)/5
-  
+  labels <- asPercentLabel(table$total/sum(table$total, na.rm=TRUE), dropZero=T, min=0.01)
+  avg <- mean(table$total, na.rm=TRUE)/5
+
   ggplot(table) + 
     geom_bar(aes(x=1, y=total, fill=reorder(Names, total), colour=reorder(Names, total)), position="fill", stat = "identity")+
     geom_text(aes(y=total+avg, label=labels, x=1.2, colour=reorder(Names, total)), vjust=3, size=4, position="fill", stat = "identity") +
@@ -402,6 +429,19 @@ currencyHoldingsPlot <- function(hold_total, currency, type){
     theme(axis.title.x = element_blank(), axis.title.y = element_blank(),  legend.position = "none") 
   
   switch(type, "currencyDynamics" = p1, "currencyDiffAbs" = p2, "currencyDiffRel" = p3)
+}
+
+HoldingDynamicsPlot <- function(ht){
+  tot<-hold_total[, ht]
+  col<-holdScale[ht]
+  
+  labels<-asKLabel(tot)
+  
+  ggplot(data=NULL, aes(x=hold_total$Names, y=tot))+
+    geom_bar(position="stack", stat="identity", colour=col, fill=alpha(col, 0.25))+
+    geom_text(aes(label=labels), colour=col , vjust=-0.5, size=2.5) +
+    scale_y_continuous(labels=asKLabel) +
+    theme(axis.title = element_blank(), axis.text.y.right = element_text(color = currSecColor["UAH"])) 
 }
 
 addCompareLine <-function(plot, original, compare, color=alpha(currSecColor["UAH"], 0.25)){

@@ -102,6 +102,14 @@ for(currency in currencies){
       hold_total[, currency_abs_diff_colname]<-c(NA, diff(hold_total[, currency_colname],1))
       placeConsolidation[, place] <- placeConsolidation[, place] + hold_total[, currency_colname] * rates
     }
+    for(holdingType in holdingTypes){
+        cols<-as.vector(which(apply(hold_meta, 2, function(x) as.character(x[3])==place && as.character(x[2])==holdingType && as.character(x[1])==currency)))
+        if(length(cols)!=0){
+            hold_colname=paste0(place,'_',holdingType)
+            if(all(names(hold_total) != hold_colname)) hold_total[, hold_colname] <-0
+            hold_total[, hold_colname]<-hold_total[, hold_colname]+apply(as.data.frame(holdings[,cols]), 1, function(x){sum(unlist(x), na.rm = T)})* rates
+          }
+    }
   }
 }
 
