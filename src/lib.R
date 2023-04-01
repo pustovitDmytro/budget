@@ -442,11 +442,12 @@ investmentsYieldPlot <- function (flowName){
   df$Holding<-holdings[-nrow(holdings),srcName]
   df$MPR<-df$MonthReturnAmount/df$Holding
   df$APR<-(1+df$MPR)^12-1
+  df$APR_norm<-unlist(map(df$APR,~min(.x, 10)))
   
   col=currColor[currency]
   holdCol=alpha(currSecColor[currency], 0.5)
   
-  ylim.prim <- c(0, max(na.omit(df$APR)))
+  ylim.prim <- c(0, max(na.omit(df$APR_norm)))
   ylim.sec <- c(0, max(na.omit(df$Holding)))
   
   b <- diff(ylim.prim)/diff(ylim.sec)
@@ -455,9 +456,9 @@ investmentsYieldPlot <- function (flowName){
   df$PlotMonth<-a+b*df$MonthReturnAmount
   
   ggplot(df, aes(x=flw_x_ace))+
-    geom_point(size=3, aes(colour=MPR>0, y=APR)) +
-    geom_segment(aes(xend=flw_x_ace, y=0, yend=APR, colour=MPR>0)) +
-    geom_text(aes(vjust=ifelse(MPR>0, -1.5, 2), y=APR, label=asPercentLabel(APR)), size=3)+
+    geom_point(size=3, aes(colour=MPR>0, y=df$APR_norm)) +
+    geom_segment(aes(xend=flw_x_ace, y=0, yend=df$APR_norm, colour=MPR>0)) +
+    geom_text(aes(vjust=ifelse(MPR>0, -1.5, 2), y=df$APR_norm, label=asPercentLabel(APR)), size=3)+
     geom_bar(aes(y=df$PlotMonth), colour=alpha(col, .25), alpha=0, stat="identity") +
     boolScale +
     geom_area(aes(y=a+Holding*b), fill = holdCol, colour=col, group = 1, position = 'identity',alpha=0.3, size=0.5)+
